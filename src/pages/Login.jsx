@@ -19,7 +19,7 @@ export const Login = () => {
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
-          <div className="flex flex-col gap-y-2 font-[400]">
+          <div className="flex flex-col gap-y-2 ">
             <label htmlFor="email" className="block text-gray-600">
               Email
             </label>
@@ -57,7 +57,7 @@ export const Login = () => {
               onChange={() => setRememberMe(!rememberMe)}
               className="h-4 w-4 text-blue-500 border-gray-400 rounded"
             />
-            <label htmlFor="rememberMe" className="ml-2 text-gray-600">
+            <label htmlFor="rememberMe" className="ml-2 text-gray-600 text-sm">
               Remember Me
             </label>
           </div>
