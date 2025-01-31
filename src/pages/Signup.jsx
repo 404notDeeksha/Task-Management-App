@@ -124,6 +124,7 @@ export const Signup = () => {
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FiEye />}
               </button>
@@ -181,7 +182,7 @@ export const Signup = () => {
 
           <button
             type="submit"
-            className="w-full p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition mt-6 font-bold"
+            className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
           >
             Sign Up
           </button>
@@ -190,7 +191,7 @@ export const Signup = () => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/app/login" className="text-blue-500 hover:underline">
+            <Link to="/app/login" className="underline font-bold ">
               Login
             </Link>
           </p>

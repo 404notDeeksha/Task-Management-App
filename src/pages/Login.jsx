@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FiEye } from "react-icons/fi";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const [rememberMe, setRememberMe] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,15 +46,25 @@ export const Login = () => {
             <label htmlFor="password" className="block text-gray-600">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              className="w-full p-2 border border-gray-300 rounded-md"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="w-full p-2 border border-gray-300 rounded-md"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <FaRegEyeSlash /> : <FiEye />}
+              </button>
+            </div>
           </div>
 
           <div className="flex items-center">
@@ -64,7 +82,7 @@ export const Login = () => {
 
           <button
             type="submit"
-            className="w-full p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition mt-6 font-bold"
+            className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
           >
             Login
           </button>
@@ -73,7 +91,7 @@ export const Login = () => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{" "}
-            <Link to="/app/signup" className="text-blue-500 hover:underline">
+            <Link to="/app/signup" className="underline">
               Sign up
             </Link>
           </p>
