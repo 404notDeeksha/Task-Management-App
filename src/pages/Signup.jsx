@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signupUser } from "../api/auth";
+import { FiEye } from "react-icons/fi";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,16 +14,21 @@ export const Signup = () => {
   });
   const [errors, setErrors] = useState({});
   const [passwordStrength, setPasswordStrength] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateEmail = (email) =>
     /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
-  
+
   const validatePassword = (password) => {
     if (password.length < 8) return "Too short";
     if (!/(?=.*[A-Z])/.test(password)) return "Add uppercase letter";
     if (!/(?=.*\d)/.test(password)) return "Add a number";
     if (!/(?=.*[@$!%*?&])/.test(password)) return "Add special character";
     return "Strong";
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleChange = (e) => {
@@ -102,15 +109,26 @@ export const Signup = () => {
 
           <div className="flex flex-col gap-y-2">
             <label className="block text-gray-600">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
-              required
-            />
+
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              >
+                {showPassword ? <FaRegEyeSlash /> : <FiEye />}
+              </button>
+            </div>
+
             {passwordStrength && (
               <p
                 className={`text-sm ${
