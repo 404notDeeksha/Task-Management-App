@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { signupUser } from "../api/auth";
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export const Signup = () => {
 
   const validateEmail = (email) =>
     /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+  
   const validatePassword = (password) => {
     if (password.length < 8) return "Too short";
     if (!/(?=.*[A-Z])/.test(password)) return "Add uppercase letter";
@@ -28,7 +30,7 @@ export const Signup = () => {
     if (name === "password") setPasswordStrength(validatePassword(value));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
@@ -38,8 +40,24 @@ export const Signup = () => {
     if (formData.password !== formData.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match";
     if (!formData.agree) newErrors.agree = "You must agree to the terms";
+
     setErrors(newErrors);
-    if (!Object.keys(newErrors).length) alert("Signup Successful!");
+
+    if (!Object.keys(newErrors).length) {
+      try {
+        const result = await signupUser({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (result) {
+          console.log("Account created");
+        }
+      } catch (error) {
+        console.log("Account is not created");
+      }
+    }
   };
 
   return (
