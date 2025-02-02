@@ -4,7 +4,7 @@ import { Login } from "../pages/Login";
 import { Signup } from "../pages/Signup";
 import { NotFound } from "../pages/NotFound";
 import { Dashboard } from "../pages/Dashboard";
-import { ProtectedRoute } from "../components/ProtectedRoute    ";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
 export const AppRoutes = () => {
   return (
