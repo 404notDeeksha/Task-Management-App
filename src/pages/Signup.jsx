@@ -191,7 +191,7 @@ export const Signup = () => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/app/login" className="underline font-bold ">
+            <Link to="/app/login" className="underline ">
               Login
             </Link>
           </p>

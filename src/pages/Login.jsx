@@ -1,23 +1,41 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { loginUser } from "../api/auth";
+import { setDataToLocalStorage } from "../utils/common-utils";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/slices/authSlice";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const result = await loginUser({
+        email: email,
+        password: password,
+      });
+
+      if (result.success) {
+        setDataToLocalStorage("token", result.token);
+        navigate("/app/dashboard");
+        dispatch(loginSuccess(result));
+        console.log("Account found");
+      }
+    } catch (error) {
+      console.log("Account not found");
+    }
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-green-100">
@@ -82,6 +100,7 @@ export const Login = () => {
 
           <button
             type="submit"
+            disabled={!rememberMe}
             className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
           >
             Login
