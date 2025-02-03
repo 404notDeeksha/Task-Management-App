@@ -28,15 +28,17 @@ export const Login = () => {
       });
 
       if (result.success) {
-        setDataToLocalStorage("token", result.token);
+        console.log("Result", result);
+        // setDataToLocalStorage("token", result.token);
         navigate("/app/dashboard");
-        dispatch(loginSuccess(result));
+        dispatch(loginSuccess({ user: result.user, token: result.token }));
         console.log("Account found");
       }
     } catch (error) {
       console.log("Account not found");
     }
   };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-green-100">
       <div className="bg-white p-8 px-10 rounded-lg shadow-lg w-[500px]">
