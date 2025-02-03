@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
+import { TaskBoard } from "../components/TaskBoard";
 
 export const Dashboard = () => {
   const data = useSelector((state) => state.auth.user);
@@ -11,6 +12,7 @@ export const Dashboard = () => {
   return (
     <div>
       <Navbar />
+      <TaskBoard />
       <div className="">{data.email}</div>
       <div className="">{data.name}</div>
     </div>
