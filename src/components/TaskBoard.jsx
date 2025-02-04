@@ -1,30 +1,42 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, deleteTask } from "../redux/slices/tasksSlice";
+import { addTask, deleteTask, editTask } from "../redux/slices/tasksSlice";
+import { TaskForm } from "./TaskForm";
 
 export const TaskBoard = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks.tasks);
-  const [taskTitle, setTaskTitle] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
   const [isAdding, setIsAdding] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
 
-  const handleAddTask = (e) => {
-    e.preventDefault();
-    if (taskTitle.trim() && taskDescription.trim()) {
-      const newTask = {
-        title: taskTitle,
-        description: taskDescription,
-      };
-      dispatch(addTask(newTask));
-      setTaskTitle("");
-      setTaskDescription("");
-      setIsAdding(false);
+  const handleAddTask = (data) => {
+    if (currentTaskIndex !== null) {
+      dispatch(
+        editTask({ index: currentTaskIndex, updatedTask: serializedDate(data) })
+      );
+    } else {
+      dispatch(addTask(serializedDate(data)));
     }
+    setCurrentTaskIndex(null);
+    setIsAdding(false);
+  };
+
+  const handleEditTask = (data) => {
+    dispatch(
+      editTask({ index: currentTaskIndex, updatedTask: serializedDate(data) })
+    );
+    setIsEditing(false);
+    setCurrentTaskIndex(null);
   };
 
   const handleDeleteTask = (index) => {
     dispatch(deleteTask(index));
+  };
+
+  const serializedDate = (data) => {
+    const serializedData = { ...data, dueDate: data.dueDate.toISOString() };
+    return serializedData;
   };
 
   const getCurrentDate = () => {
@@ -42,7 +54,10 @@ export const TaskBoard = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold text-gray-900">{getCurrentDate()}</h2>
         <button
-          onClick={() => setIsAdding(true)}
+          onClick={() => {
+            setIsAdding(true);
+            setIsEditing(false);
+          }}
           className="px-4 py-2 bg-green-900 text-white rounded-lg shadow hover:bg-green-700"
         >
           + Create New Task
@@ -50,61 +65,63 @@ export const TaskBoard = () => {
       </div>
 
       {isAdding && (
-        <form
-          className="bg-white p-4 rounded-lg shadow-md mb-4"
+        <TaskForm
           onSubmit={handleAddTask}
-        >
-          <input
-            type="text"
-            placeholder="Enter task title..."
-            value={taskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg mb-2"
-          />
-          <textarea
-            placeholder="Enter task description..."
-            value={taskDescription}
-            onChange={(e) => setTaskDescription(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg mb-2"
-          />
-          <div className="flex justify-end mt-2">
-            <button
-              type="button"
-              onClick={() => {
-                setIsAdding(false);
-                setTaskTitle("");
-                setTaskDescription("");
-              }}
-              className="px-3 py-1 bg-gray-300 text-gray-800 rounded-lg mr-2 hover:bg-gray-400"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700"
-            >
-              Save Task
-            </button>
-          </div>
-        </form>
+          onCancel={() => setIsAdding(false)}
+        />
+      )}
+
+      {isEditing && (
+        <TaskForm
+          onSubmit={handleEditTask}
+          onCancel={() => {
+            setIsEditing(false);
+            setCurrentTaskIndex(null);
+          }}
+          defaultValues={
+            currentTaskIndex !== null ? tasks[currentTaskIndex] : {}
+          }
+        />
       )}
 
       <ul className="bg-white p-4 rounded-lg shadow">
-        {tasks.length === 0 ? (
+        {tasks.length === 0 && !isAdding ? (
           <p className="text-gray-500">No tasks yet. Add one!</p>
         ) : (
-          tasks.map((task, index) => (
-            <li key={index} className="p-2 border-b last:border-none">
-              <h3 className="font-bold text-gray-900">{task.title}</h3>
-              <p className="text-gray-700">{task.description}</p>
-              <button
-                onClick={() => handleDeleteTask(index)}
-                className="text-red-600 hover:text-red-800 mt-2"
+          tasks
+            .filter((_, index) => index !== currentTaskIndex)
+            .map((task, index) => (
+              <li
+                key={index}
+                className="p-2 border-b last:border-none flex flex-col gap-3"
               >
-                Delete
-              </button>
-            </li>
-          ))
+                <h3 className="font-bold text-gray-900">{task.title}</h3>
+                <p className="text-gray-700">{task.description}</p>
+                <p className="text-gray-600">
+                  Due Date: {new Date(task.dueDate).toLocaleDateString()}
+                </p>
+                <p className="text-gray-600">Status: {task.status}</p>
+                <p className="text-gray-600">Priority: {task.priority}</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      setIsEditing(true);
+                      setIsAdding(false);
+                      setCurrentTaskIndex(index);
+                    }}
+                    className="text-green-600 hover:text-green-800 mt-2"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDeleteTask(index)}
+                    className="text-red-600 hover:text-red-800 mt-2"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))
         )}
       </ul>
     </div>
