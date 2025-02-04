@@ -13,8 +13,6 @@ export const Dashboard = () => {
     <div>
       <Navbar />
       <TaskBoard />
-      <div className="">{data.email}</div>
-      <div className="">{data.name}</div>
     </div>
   );
 };

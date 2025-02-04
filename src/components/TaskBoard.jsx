@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, deleteTask, editTask } from "../redux/slices/tasksSlice";
 import { TaskForm } from "./TaskForm";
+import { URL } from "../utils/url";
+import { updateTask } from "../api/tasks";
 
 export const TaskBoard = () => {
   const dispatch = useDispatch();
@@ -10,27 +12,52 @@ export const TaskBoard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
 
-  const handleAddTask = (data) => {
-    if (currentTaskIndex !== null) {
-      dispatch(
-        editTask({ index: currentTaskIndex, updatedTask: serializedDate(data) })
-      );
-    } else {
-      dispatch(addTask(serializedDate(data)));
+  const handleAddTask = async (data) => {
+    try {
+      if (currentTaskIndex !== null) {
+        const response = await updateTask(id, data);
+        if (response.success) {
+          console.log("Updated Task");
+        }
+        // update task on basis of id in database
+        // dispatch(
+        //   editTask({ index: currentTaskIndex, updatedTask: serializedDate(data) })
+        // );
+      } else {
+        // add task in database
+        const response = await createTask(data);
+        if (response.success) {
+          console.log("Created Task");
+        }
+        // dispatch(addTask(serializedDate(data)));
+      }
+    } catch (error) {
+      console.log("Account not found");
     }
+
     setCurrentTaskIndex(null);
     setIsAdding(false);
   };
 
-  const handleEditTask = (data) => {
-    dispatch(
-      editTask({ index: currentTaskIndex, updatedTask: serializedDate(data) })
-    );
+  const handleEditTask = async (data) => {
+    //update task on id basis in database
+    try {
+      const response = await updateTask(id, data);
+      if (response.success) {
+        console.log("Updated Task");
+      }
+    } catch (error) {
+      console.log("Account not found");
+    }
+    // dispatch(
+    //   editTask({ index: currentTaskIndex, updatedTask: serializedDate(data) })
+    // );
     setIsEditing(false);
     setCurrentTaskIndex(null);
   };
 
   const handleDeleteTask = (index) => {
+    //delete task on id basis in database
     dispatch(deleteTask(index));
   };
 
@@ -88,6 +115,7 @@ export const TaskBoard = () => {
         {tasks.length === 0 && !isAdding ? (
           <p className="text-gray-500">No tasks yet. Add one!</p>
         ) : (
+          //get all tasks from  database
           tasks
             .filter((_, index) => index !== currentTaskIndex)
             .map((task, index) => (
@@ -107,6 +135,7 @@ export const TaskBoard = () => {
                     onClick={() => {
                       setIsEditing(true);
                       setIsAdding(false);
+                      // setCurrentTaskIndex(task.id)
                       setCurrentTaskIndex(index);
                     }}
                     className="text-green-600 hover:text-green-800 mt-2"
