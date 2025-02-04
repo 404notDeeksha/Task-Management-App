@@ -51,7 +51,7 @@ export const TaskBoard = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mt-10 mb-4 px-6">
         <h2 className="text-xl font-bold text-gray-900">{getCurrentDate()}</h2>
         <button
           onClick={() => {

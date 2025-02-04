@@ -153,7 +153,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white p-4 rounded-lg shadow-md mb-4"
+      className="bg-white p-4 rounded-lg shadow-md mb-4 flex flex-col gap-4"
     >
       <input
         {...register("title", { required: "Title is required" })}
@@ -179,6 +179,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
             placeholderText="Select due date"
             onChange={(date) => field.onChange(date)}
             selected={field.value}
+            minDate={new Date()}
             className="w-full p-2 border border-gray-300 rounded-lg mb-2"
           />
         )}
