@@ -1,20 +1,24 @@
 import axios from "axios";
 import { URL } from "../utils/url";
+import api from "./axiosInstance";
 
 export const createTask = async (data) => {
   try {
-    const response = await axios.post(`${URL.CREATE_TASK_URL}`, data);
-    console.log(response.data);
-    return response.data;
+    console.log("Data", data);
+    const response = await api.post("", data);
+    console.log("CREATE", response?.data,);
+    return response?.data;
   } catch (error) {
-    throw error.response?.data?.error || "Task Creation failed";
+    console.log(error);
+    // throw error.response?.data?.error || "Task Creation failed";
   }
 };
 
-export const updateTask = async (id, data) => {
+export const updateTask = async (data, id) => {
+  console.log(`/${id}`, data);
   try {
-    const response = await axios.put(`${TASK_URL}/:${id}`, data);
-    console.log(response.data);
+    const response = await api.put(`/${id}`, data);
+    console.log("UPDATE", response.data);
     return response.data;
   } catch (error) {
     throw error.response?.data?.error || "Task Updation failed";
@@ -22,20 +26,21 @@ export const updateTask = async (id, data) => {
 };
 
 export const deleteTask = async (id) => {
+  console.log("Id -->", id, `/${id}`);
   try {
-    const response = await axios.delete(`${TASK_URL}/:${id}`);
-    console.log(response.data);
+    const response = await api.delete(`/${id}`);
+    console.log("DELETE", response.data);
     return response.data;
   } catch (error) {
     throw error.response?.data?.error || "Task Deletion failed";
   }
 };
 
-export const getTasks = async (data) => {
+export const getTasks = async () => {
   try {
-    const response = await axios.get(`${TASK_URL}`, data);
-    console.log(response.data);
-    return response.data;
+    const response = await api.get("");
+    console.log("GET", response?.data);
+    return response?.data;
   } catch (error) {
     throw error.response?.data?.error || "Tasks cant be  fetched";
   }

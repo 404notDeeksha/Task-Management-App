@@ -13,13 +13,11 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
     defaultValues: {
       title: defaultValues?.title || "",
       description: defaultValues?.description || "",
-      dueDate: defaultValues ? new Date(defaultValues.dueDate) : null,
+      dueDate: defaultValues?.dueDate ? new Date(defaultValues.dueDate) : null,
       status: defaultValues?.status || "",
       priority: defaultValues?.priority || "",
     },
   });
-
-
 
   return (
     <form
@@ -49,8 +47,9 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
           <DatePicker
             placeholderText="Select due date"
             onChange={(date) => field.onChange(date)}
-            selected={field.value}
+            selected={field.value ? new Date(field.value) : null}
             minDate={new Date()}
+            dateFormat="dd/MM/yy"
             className="w-full p-2 border border-gray-300 rounded-lg mb-2"
           />
         )}
@@ -64,9 +63,9 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
         className="w-full p-2 border border-gray-300 rounded-lg mb-2"
       >
         <option value="">Select status</option>
-        <option value="todo">To Do</option>
-        <option value="in-progress">In Progress</option>
-        <option value="completed">Completed</option>
+        <option value="To Do">To Do</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
       </select>
       {errors.status && (
         <p className="text-red-500 text-sm">{errors.status.message}</p>
@@ -77,9 +76,9 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
         className="w-full p-2 border border-gray-300 rounded-lg mb-2"
       >
         <option value="">Select priority</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
       </select>
       {errors.priority && (
         <p className="text-red-500 text-sm">{errors.priority.message}</p>
@@ -97,7 +96,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
           type="submit"
           className="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700"
         >
-          {defaultValues ? "Update Task" : "Add Task"}
+          {defaultValues?._id ? "Update Task" : "Add Task"}
         </button>
       </div>
     </form>

@@ -29,7 +29,7 @@ export const Login = () => {
 
       if (result.success) {
         console.log("Result", result);
-        // setDataToLocalStorage("token", result.token);
+        setDataToLocalStorage("token", result.token);
         navigate("/app/dashboard");
         dispatch(loginSuccess({ user: result.user, token: result.token }));
         console.log("Account found");
