@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { loginUser } from "../api/auth";
-import { setDataToLocalStorage } from "../utils/common-utils";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../redux/slices/authSlice";
 
@@ -26,12 +25,9 @@ export const Login = () => {
         email: email,
         password: password,
       });
-
       if (result.success) {
-        console.log("Result", result);
-        setDataToLocalStorage("token", result.token);
         navigate("/app/dashboard");
-        dispatch(loginSuccess({ user: result.user, token: result.token }));
+        dispatch(loginSuccess({ user: result.user }));
         console.log("Account found");
       }
     } catch (error) {

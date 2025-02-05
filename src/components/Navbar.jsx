@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { GoSearch } from "react-icons/go";
 import { image } from "../assets";
 import { Link } from "react-router-dom";
+import { logoutUser } from "./../api/auth";
 
 export default function Navbar() {
   const search = useSelector((state) => state.search.text);
@@ -42,7 +43,11 @@ export default function Navbar() {
             <button className="block w-full px-4 py-2 hover:bg-white hover:text-green-950">
               Profile
             </button>
-            <button className="block w-full px-4 py-2 hover:bg-white hover:text-green-950">
+            <button
+              className="block w-full px-4 py-2 hover:bg-white hover:text-green-950"
+              type="button"
+              onClick={() => logoutUser()}
+            >
               Logout
             </button>
           </div>

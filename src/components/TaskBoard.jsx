@@ -24,7 +24,6 @@ export const TaskBoard = () => {
   }, []);
 
   const handleAddOrUpdateTask = async (data) => {
-    console.log(data, currentTask);
     try {
       let response;
       if (currentTask) {
@@ -38,7 +37,6 @@ export const TaskBoard = () => {
           );
         }
       } else {
-        console.log("Adding task", currentTask, data);
         response = await createTask(data);
         if (response?.success) {
           console.log("Created Task", response.data);
@@ -58,7 +56,6 @@ export const TaskBoard = () => {
     try {
       const response = await deleteTask(taskId);
       if (response.success) {
-        console.log("Deleted Task", taskId);
         setTasks((prevTasks) =>
           prevTasks.filter((task) => task._id !== taskId)
         );

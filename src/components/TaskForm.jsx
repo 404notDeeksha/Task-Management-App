@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -27,7 +27,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
       <input
         {...register("title", { required: "Title is required" })}
         placeholder="Title"
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+        className="w-full p-2 border border-gray-300 rounded-lg mb-2 bg-green-100"
       />
       {errors.title && (
         <p className="text-red-500 text-sm">{errors.title.message}</p>
@@ -36,7 +36,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
       <textarea
         {...register("description")}
         placeholder="Description"
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+        className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100"
       />
 
       <Controller
@@ -50,7 +50,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
             selected={field.value ? new Date(field.value) : null}
             minDate={new Date()}
             dateFormat="dd/MM/yy"
-            className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+            className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100"
           />
         )}
       />
@@ -60,7 +60,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
 
       <select
         {...register("status", { required: "Status is required" })}
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+        className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100  text-gray-500"
       >
         <option value="">Select status</option>
         <option value="To Do">To Do</option>
@@ -73,10 +73,12 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
 
       <select
         {...register("priority", { required: "Priority is required" })}
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2"
+        className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100 text-gray-500"
       >
         <option value="">Select priority</option>
-        <option value="Low">Low</option>
+        <option value="Low" className=" hover:bg-green-600">
+          Low
+        </option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
