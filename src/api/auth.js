@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/slices/authSlice";
 import { URL } from "../utils/url";
 
 export const signupUser = async (userData) => {
@@ -27,10 +25,9 @@ export const loginUser = async (userData) => {
 };
 
 export const logoutUser = async () => {
-  const dispatch = useDispatch();
+  console.log("Logging out");
   try {
     await axios.post(`${URL.LOGOUT_URL}`, {}, { withCredentials: true }); // ✅ Ensures cookies are handled
-    dispatch(logout()); // Clear Redux state
   } catch (error) {
     console.error("Logout failed:", error.response?.data?.message);
   }

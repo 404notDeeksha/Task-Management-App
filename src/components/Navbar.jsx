@@ -5,13 +5,19 @@ import { GoSearch } from "react-icons/go";
 import { image } from "../assets";
 import { Link } from "react-router-dom";
 import { logoutUser } from "./../api/auth";
+import { logout } from "../redux/slices/authSlice";
 
 export default function Navbar() {
   const search = useSelector((state) => state.search.text);
   const userName = useSelector((state) => state.auth.user.name);
-  const dispatch = useDispatch();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userInitial = userName ? userName.charAt(0).toUpperCase() : "U";
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    logoutUser();
+    dispatch(logout());
+  };
 
   return (
     <nav className="bg-green-900 text-white p-4 flex items-center justify-between shadow-lg">
@@ -46,7 +52,7 @@ export default function Navbar() {
             <button
               className="block w-full px-4 py-2 hover:bg-white hover:text-green-950"
               type="button"
-              onClick={() => logoutUser()}
+              onClick={handleLogout}
             >
               Logout
             </button>
