@@ -74,9 +74,9 @@ export const TaskBoard = () => {
     });
   };
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="flex justify-between items-center mt-10 mb-4 px-6">
-        <h2 className="text-xl font-bold text-gray-900">{getCurrentDate()}</h2>
+    <div className="px-4 sm:px-6  min-h-screen flex flex-col mx-auto max-w-screen-md w-full">
+      <div className="flex flex-row justify-between mt-10 mb-6 px-6">
+        <h1 className=" font-bold text-gray-900 text-4xl">Today</h1>
         <button
           onClick={() => {
             setIsAdding(true);
