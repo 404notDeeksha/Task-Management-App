@@ -1,5 +1,6 @@
 import axios from "axios";
 import { URL } from "../utils/url";
+import { persistor } from "../redux/store";
 
 export const signupUser = async (userData) => {
   try {
@@ -31,4 +32,5 @@ export const logoutUser = async () => {
   } catch (error) {
     console.error("Logout failed:", error.response?.data?.message);
   }
+  persistor.purge();
 };
