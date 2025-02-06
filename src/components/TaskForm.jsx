@@ -41,9 +41,9 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
         className="w-full placeholder:text-xs focus:outline-none focus:ring-0 resize-none overflow-hidden"
         rows="1"
       />
-      <div className="flex justify-start gap-4">
+      <div className="flex justify-start gap-4 items-center mt-2">
         <div className="relative w-contain">
-          <IoCalendarClearOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+          <IoCalendarClearOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs" />
 
           <Controller
             name="dueDate"
@@ -56,57 +56,58 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
                 selected={field.value ? new Date(field.value) : null}
                 minDate={new Date()}
                 dateFormat="dd MMM yy"
-                className="w-full pl-10 pr-3 py-2 placeholder:text-sm border-gray-200 rounded border focus:outline-none"
+                className="w-full pl-10 py-1.5 text-sm pr-3 placeholder:text-sm border-gray-200 rounded border focus:outline-none"
                 popperClassName="!left-0 !top-0 !z-10 !pl-2"
               />
             )}
           />
         </div>
 
-        {/* {errors.dueDate && (
-          <p className="text-red-500 text-sm">{errors.dueDate.message}</p>
-        )} */}
-
-        <select
-          {...register("status", { required: "Status is required" })}
-          className="w-24 p-2 text-sm border-gray-200 rounded border placeholder:text-xs focus:outline-none focus:ring-0  text-gray-500"
-        >
-          <option value="">Status</option>
-          <option value="To Do">To Do</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
-        </select>
-        {/* {errors.status && (
-          <p className="text-red-500 text-sm">{errors.status.message}</p>
-        )} */}
-
-        <select
-          {...register("priority", { required: "Priority is required" })}
-          className="w-24 p-2 text-sm border-gray-200 rounded border placeholder:text-xs focus:outline-none focus:ring-0 text-gray-500"
-        >
-          <option value="">Priority</option>
-          <option value="Low" className=" hover:bg-green-600">
-            Low
-          </option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </select>
-        {/* {errors.priority && (
-          <p className="text-red-500 text-sm">{errors.priority.message}</p>
-        )} */}
+        <div className="relative">
+          <select
+            {...register("status", { required: "Choose Status" })}
+            className="w-contain p-2 text-sm border-gray-200 rounded border placeholder:text-xs focus:outline-none focus:ring-0  text-gray-500"
+          >
+            <option value="">Status</option>
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          {errors.status && (
+            <p className="text-red-500 text-sm mt-1">{errors.status.message}</p>
+          )}
+        </div>
+        <div className="relative">
+          <select
+            {...register("priority", { required: "Choose Priority" })}
+            className="w-contain p-2 text-sm border-gray-200 rounded border placeholder:text-xs focus:outline-none focus:ring-0 text-gray-500"
+          >
+            <option value="">Priority</option>
+            <option value="Low" className=" hover:bg-green-600">
+              Low
+            </option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          {errors.priority && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.priority.message}
+            </p>
+          )}
+        </div>
       </div>
 
-      <div className="flex justify-end mt-2">
+      <div className="flex justify-start mt-4">
         <button
           type="button"
           onClick={onCancel}
-          className="px-3 py-1 bg-gray-300 text-gray-800 rounded-lg mr-2 hover:bg-gray-400"
+          className="px-3 py-1 bg-gray-300 text-gray-800 rounded-lg mr-2 hover:bg-gray-400 text-xs"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          className="px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700 text-xs"
         >
           {defaultValues?._id ? "Update Task" : "Add Task"}
         </button>
