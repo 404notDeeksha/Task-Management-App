@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { TaskForm } from "./TaskForm";
 import { updateTask, createTask, deleteTask, getTasks } from "../api/tasks";
+import { IoCalendarClearOutline } from "react-icons/io5";
+import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineModeEditOutline } from "react-icons/md";
 
 export const TaskBoard = () => {
   const [tasks, setTasks] = useState([]);
@@ -112,15 +115,19 @@ export const TaskBoard = () => {
             .map((task) => (
               <li
                 key={task._id}
-                className="p-2 border-b last:border-none flex flex-col gap-3"
+                className="p-2 border-b last:border-none flex flex-row justify-between "
               >
-                <h3 className="font-bold text-gray-900">{task.title}</h3>
-                <p className="text-gray-700">{task.description}</p>
-                <p className="text-gray-600">
-                  Due Date: {task.formattedDueDate}
-                </p>
-                <p className="text-gray-600">Status: {task.status}</p>
-                <p className="text-gray-600">Priority: {task.priority}</p>
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-black">{task.title}</h3>
+                  <p className=" text-xs text-gray-600">{task.description}</p>
+                  <p className="flex flex-row gap-2 items-center my-2">
+                    <IoCalendarClearOutline className="text-green-800" />
+                    <div className="text-gray-600 text-xs">{task.formattedDueDate}</div>
+                  </p>
+                  {/* <p className="text-gray-600">Status: {task.status}</p> */}
+                  {/* <p className="text-gray-600">Priority: {task.priority}</p> */}
+                </div>
+
                 <div className="flex gap-2">
                   <button
                     onClick={() => {
@@ -128,15 +135,15 @@ export const TaskBoard = () => {
                       setIsAdding(false);
                       setCurrentTask(task);
                     }}
-                    className="text-green-600 hover:text-green-800 mt-2"
+                    className="text-green-500 hover:text-green-800 mt-2"
                   >
-                    Edit
+                    <MdOutlineModeEditOutline />
                   </button>
                   <button
                     onClick={() => handleDeleteTask(task._id)}
-                    className="text-red-600 hover:text-red-800 mt-2"
+                    className="text-red-500 hover:text-red-800 mt-2"
                   >
-                    Delete
+                    <MdDeleteOutline />
                   </button>
                 </div>
               </li>

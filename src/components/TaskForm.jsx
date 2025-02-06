@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { IoCalendarClearOutline } from "react-icons/io5";
 
 export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
   const {
@@ -22,12 +23,13 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white p-4 rounded-lg shadow-md mb-4 flex flex-col gap-4"
+      className="bg-white p-4 rounded-lg shadow-md mb-2 gap-2 flex flex-col"
     >
-      <input
+      <textarea
         {...register("title", { required: "Title is required" })}
         placeholder="Title"
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2 bg-green-100"
+        className="w-full focus:outline-none focus:ring-0 resize-none overflow-hidden"
+        rows="1"
       />
       {errors.title && (
         <p className="text-red-500 text-sm">{errors.title.message}</p>
@@ -36,55 +38,63 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
       <textarea
         {...register("description")}
         placeholder="Description"
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100"
+        className="w-full placeholder:text-xs focus:outline-none focus:ring-0 resize-none overflow-hidden"
+        rows="1"
       />
+      <div className="flex justify-start gap-4">
+        <div className="relative w-contain">
+          <IoCalendarClearOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
 
-      <Controller
-        name="dueDate"
-        control={control}
-        rules={{ required: "Due date is required" }}
-        render={({ field }) => (
-          <DatePicker
-            placeholderText="Select due date"
-            onChange={(date) => field.onChange(date)}
-            selected={field.value ? new Date(field.value) : null}
-            minDate={new Date()}
-            dateFormat="dd/MM/yy"
-            className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100"
+          <Controller
+            name="dueDate"
+            control={control}
+            rules={{ required: "Due date is required" }}
+            render={({ field }) => (
+              <DatePicker
+                placeholderText="Date"
+                onChange={(date) => field.onChange(date)}
+                selected={field.value ? new Date(field.value) : null}
+                minDate={new Date()}
+                dateFormat="dd MMM yy"
+                className="w-full pl-10 pr-3 py-2 placeholder:text-sm border-gray-200 rounded border focus:outline-none"
+                popperClassName="!left-0 !top-0 !z-10 !pl-2"
+              />
+            )}
           />
-        )}
-      />
-      {errors.dueDate && (
-        <p className="text-red-500 text-sm">{errors.dueDate.message}</p>
-      )}
+        </div>
 
-      <select
-        {...register("status", { required: "Status is required" })}
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100  text-gray-500"
-      >
-        <option value="">Select status</option>
-        <option value="To Do">To Do</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Completed">Completed</option>
-      </select>
-      {errors.status && (
-        <p className="text-red-500 text-sm">{errors.status.message}</p>
-      )}
+        {/* {errors.dueDate && (
+          <p className="text-red-500 text-sm">{errors.dueDate.message}</p>
+        )} */}
 
-      <select
-        {...register("priority", { required: "Priority is required" })}
-        className="w-full p-2 border border-gray-300 rounded-lg mb-2  bg-green-100 text-gray-500"
-      >
-        <option value="">Select priority</option>
-        <option value="Low" className=" hover:bg-green-600">
-          Low
-        </option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-      {errors.priority && (
-        <p className="text-red-500 text-sm">{errors.priority.message}</p>
-      )}
+        <select
+          {...register("status", { required: "Status is required" })}
+          className="w-24 p-2 text-sm border-gray-200 rounded border placeholder:text-xs focus:outline-none focus:ring-0  text-gray-500"
+        >
+          <option value="">Status</option>
+          <option value="To Do">To Do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+        {/* {errors.status && (
+          <p className="text-red-500 text-sm">{errors.status.message}</p>
+        )} */}
+
+        <select
+          {...register("priority", { required: "Priority is required" })}
+          className="w-24 p-2 text-sm border-gray-200 rounded border placeholder:text-xs focus:outline-none focus:ring-0 text-gray-500"
+        >
+          <option value="">Priority</option>
+          <option value="Low" className=" hover:bg-green-600">
+            Low
+          </option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        {/* {errors.priority && (
+          <p className="text-red-500 text-sm">{errors.priority.message}</p>
+        )} */}
+      </div>
 
       <div className="flex justify-end mt-2">
         <button

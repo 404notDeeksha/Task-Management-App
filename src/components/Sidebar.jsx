@@ -58,10 +58,7 @@ const Sidebar = () => {
           </ul>{" "}
         </div>
         <div className="flex flex-row items-center mb-5">
-          <div
-            className="w-10 h-10 mr-2 flex items-center  justify-center rounded-full bg-white  text-green-900 text-lg font-bold"
-            // onClick={() => setDropdownOpen(!dropdownOpen)}
-          >
+          <div className="w-10 h-10 mr-2 flex items-center  justify-center rounded-full bg-white  text-green-900 text-lg font-bold">
             {userInitial}
           </div>
           <button
