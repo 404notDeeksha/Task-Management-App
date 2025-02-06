@@ -75,8 +75,9 @@ export const TaskBoard = () => {
   };
   return (
     <div className="px-4 sm:px-6  mx-auto min-h-screen flex flex-col max-w-screen-md w-full flex-grow">
+      <div className="px-4 sm:px-6  mx-auto max-w-screen-md"></div>
       <div className="flex flex-row justify-between mt-10 mb-6 px-6">
-        <h1 className=" font-bold text-gray-900 text-4xl">Today</h1>
+        <h1 className=" font-bold text-gray-900 text-3xl">Today</h1>
         <button
           onClick={() => {
             setIsAdding(true);
