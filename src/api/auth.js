@@ -8,12 +8,15 @@ export const signupUser = async (userData) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    throw error.response?.data?.error || "Signup failed";
+    if (error.response && error.response.data && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Something went wrong. Please try again.");
+    }
   }
 };
 
 export const loginUser = async (userData) => {
-  console.log("Login Res", userData);
   try {
     const response = await axios.post(`${URL.LOGIN_URL}`, userData, {
       withCredentials: true,
@@ -21,7 +24,11 @@ export const loginUser = async (userData) => {
     console.log("Login Res", response.data);
     return response.data;
   } catch (error) {
-    console.error("Login failed:", error);
+    if (error.response && error.response.data && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Something went wrong. Please try again.");
+    }
   }
 };
 

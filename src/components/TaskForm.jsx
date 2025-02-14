@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { IoCalendarClearOutline } from "react-icons/io5";
+// import AutoResizeTextarea from "./AutoResizeTextarea";
 
 export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
   const {
@@ -23,17 +24,20 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white p-4 rounded-lg shadow-md mb-2 gap-2 flex flex-col"
+      className="bg-white p-4 rounded-lg shadow-md mb-2 gap-2 "
     >
       <textarea
         {...register("title", { required: "Title is required" })}
         placeholder="Title"
-        className="w-full focus:outline-none focus:ring-0 resize-none overflow-hidden"
-        rows="1"
+        className="w-full focus:outline-none focus:ring-0 resize-none overflow-hidden whitespace-pre-wrap break-words min-h-[40px]"
+      />
+      {/* <AutoResizeTextarea
+        {...register("title", { required: "Title is required" })}
+        placeholder="Title"
       />
       {errors.title && (
         <p className="text-red-500 text-sm">{errors.title.message}</p>
-      )}
+      )} */}
 
       <textarea
         {...register("description")}
@@ -41,6 +45,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
         className="w-full placeholder:text-xs focus:outline-none focus:ring-0 resize-none overflow-hidden"
         rows="1"
       />
+
       <div className="flex justify-start gap-4 items-center mt-2">
         <div className="relative w-contain">
           <IoCalendarClearOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs" />
@@ -77,6 +82,7 @@ export const TaskForm = ({ onSubmit, onCancel, defaultValues }) => {
             <p className="text-red-500 text-sm mt-1">{errors.status.message}</p>
           )}
         </div>
+
         <div className="relative">
           <select
             {...register("priority", { required: "Choose Priority" })}

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { loginUser } from "../api/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../redux/slices/authSlice";
+import { routes } from "../routes/routes";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,13 @@ export const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(routes.inbox); // Redirect to Home if already logged in
+    }
+  }, [isAuthenticated, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -26,7 +34,7 @@ export const Login = () => {
         password: password,
       });
       if (result.success) {
-        navigate("/app/dashboard");
+        navigate(routes.login);
         dispatch(loginSuccess({ user: result.user }));
         console.log("Account found");
       }
@@ -108,7 +116,7 @@ export const Login = () => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{" "}
-            <Link to="/app/signup" className="underline">
+            <Link to={routes.signup} className="underline">
               Sign up
             </Link>
           </p>

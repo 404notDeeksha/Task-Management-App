@@ -68,17 +68,9 @@ export const TaskBoard = () => {
     }
   };
 
-  const getCurrentDate = () => {
-    return new Date().toLocaleDateString("en-GB", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
   return (
     <div className="px-4 sm:px-6  mx-auto min-h-screen flex flex-col max-w-screen-md w-full flex-grow">
-      <div className="px-4 sm:px-6  mx-auto max-w-screen-md"></div>
+      {/* <div className="px-4 sm:px-6  mx-auto max-w-screen-md"></div> */}
       <div className="flex flex-row justify-between mt-10 mb-6 px-6">
         <h1 className=" font-bold text-gray-900 text-3xl">Today</h1>
         <button
@@ -106,7 +98,7 @@ export const TaskBoard = () => {
         />
       )}
 
-      <ul className="bg-white p-4 rounded-lg shadow">
+      <ul className=" p-4 rounded-lg ">
         {tasks.length === 0 && !isAdding ? (
           <p className="text-gray-500">No tasks yet. Add one!</p>
         ) : (
@@ -115,15 +107,19 @@ export const TaskBoard = () => {
             .map((task) => (
               <li
                 key={task._id}
-                className="p-2 border-b last:border-none flex flex-row justify-between "
+                className="p-2 border-b mb-2 last:border-none flex flex-row justify-between "
               >
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-black">{task.title}</h3>
-                  <p className=" text-xs text-gray-600">{task.description}</p>
-                  <p className="flex flex-row gap-2 items-center my-2">
+                  <h3 className="text-black font-[500]">{task.title}</h3>
+                  <div className=" text-xs text-gray-600">
+                    {task.description}
+                  </div>
+                  <div className="flex flex-row gap-2 items-center my-2">
                     <IoCalendarClearOutline className="text-green-800" />
-                    <div className="text-gray-600 text-xs">{task.formattedDueDate}</div>
-                  </p>
+                    <div className="text-gray-600 text-xs">
+                      {task.formattedDueDate}
+                    </div>
+                  </div>
                   {/* <p className="text-gray-600">Status: {task.status}</p> */}
                   {/* <p className="text-gray-600">Priority: {task.priority}</p> */}
                 </div>

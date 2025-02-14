@@ -3,12 +3,13 @@ import { setSearchText } from "../redux/slices/searchSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { GoSearch } from "react-icons/go";
 import { image } from "../assets";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "./../api/auth";
 import { logout } from "../redux/slices/authSlice";
+import { routes } from "../routes/routes";
 
 export default function Navbar() {
-  const search = useSelector((state) => state.search.text);
+  // const search = useSelector((state) => state.search.text);
   const userName = useSelector((state) => state.auth.user.name);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userInitial = userName ? userName.charAt(0).toUpperCase() : "U";
@@ -20,44 +21,69 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-green-900 text-white p-4 flex items-center justify-between shadow-lg">
-      <Link to="/app/dashboard" className="flex flex-row items-center gap-3">
-        <img src={image.logo} alt="Logo" className="w-10 h-10 cursor-pointer" />
-        <h1 className="text-xl font-bold">To Do</h1>
-      </Link>
+    <nav className="bg-green-900 text-white p-4 flex flex-col w-[300px] justify-between shadow-lg">
+      <div className="flex flex-col items-start gap-5">
+        <Link to={routes.inbox} className="flex flex-row items-center gap-3">
+          <img
+            src={image.logo}
+            alt="Logo"
+            className="w-10 h-10 cursor-pointer"
+          />
+          <h1 className="text-xl font-bold">To Do</h1>
+        </Link>
 
-      <div className="relative w-1/3">
-        <input
-          type="text"
-          placeholder="Search your text"
-          value={search}
-          onChange={(e) => dispatch(setSearchText(e.target.value))}
-          className="w-full p-2 pl-10 rounded-lg bg-white text-gray-900 outline-none"
-        />
-        <GoSearch className="absolute left-3 top-2.5 text-gray-400" size={20} />
+        <NavLink
+          to={routes.inbox}
+          className={({ isActive }) =>
+            `${
+              isActive
+                ? "bg-white text-green-900 "
+                : "hover:bg-white hover:text-green-900"
+            } w-full font-bold py-3 rounded pl-5 text-lg cursor-pointer block mt-5`
+          }
+        >
+          Inbox
+        </NavLink>
+        <NavLink
+          to={routes.today}
+          className={({ isActive }) =>
+            `${
+              isActive
+                ? "bg-white text-green-900 "
+                : " hover:bg-white hover:text-green-900"
+            } w-full font-bold py-3 rounded pl-5 text-lg cursor-pointer block `
+          }
+        >
+          Today
+        </NavLink>
+        <NavLink
+          to={routes.priority}
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-white text-green-900 " : ""
+            } w-full hover:bg-white hover:text-green-900 font-bold py-3 rounded pl-5 text-lg cursor-pointer block `
+          }
+        >
+          Priority
+        </NavLink>
       </div>
 
-      <div className="relative">
+      <div className="relative flex flex-row items-center group hover:bg-white hover:text-green-900  rounded">
         <div
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white  text-green-900 cursor-pointer text-lg font-bold"
-          onClick={() => setDropdownOpen(!dropdownOpen)}
+          className=" w-10 h-10 m-2 flex items-center justify-center rounded-full bg-white
+           group-hover:bg-green-800 group-hover:text-white
+         text-green-900 cursor-pointer text-lg font-bold"
         >
           {userInitial}
         </div>
-        {dropdownOpen && (
-          <div className="absolute right-0 mt-2 w-36 bg-green-900 text-white shadow-lg rounded-lg overflow-hidden">
-            <button className="block w-full px-4 py-2 hover:bg-white hover:text-green-950">
-              Profile
-            </button>
-            <button
-              className="block w-full px-4 py-2 hover:bg-white hover:text-green-950"
-              type="button"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
-        )}
+
+        <button
+          className="block w-full text-left px-4 py-2 text-xl font-bold cursor-pointer "
+          type="button"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
     </nav>
   );

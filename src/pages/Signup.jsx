@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../api/auth";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import { routes } from "../routes/routes";
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,14 @@ export const Signup = () => {
   const [errors, setErrors] = useState({});
   const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(routes.inbox); // Redirect to Home if already logged in
+    }
+  }, [isAuthenticated, navigate]);
 
   const validateEmail = (email) =>
     /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
@@ -73,7 +83,7 @@ export const Signup = () => {
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-10">
           Sign Up
         </h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-2">
             <label className="block text-gray-600">Name</label>
             <input
@@ -191,7 +201,7 @@ export const Signup = () => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/app/login" className="underline ">
+            <Link to={routes.login} className="underline ">
               Login
             </Link>
           </p>
