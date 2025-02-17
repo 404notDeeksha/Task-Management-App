@@ -69,21 +69,21 @@ export const TaskBoard = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6  mx-auto min-h-screen flex flex-col max-w-screen-md w-full flex-grow">
-      {/* <div className="px-4 sm:px-6  mx-auto max-w-screen-md"></div> */}
-      <div className="flex flex-row justify-between mt-10 mb-6 px-6">
-        <h1 className=" font-bold text-gray-900 text-3xl">Today</h1>
-        <button
-          onClick={() => {
-            setIsAdding(true);
-            setIsEditing(false);
-            setCurrentTask(null);
-          }}
-          className="px-4 py-2 bg-green-900 text-white rounded-lg shadow hover:bg-green-700"
-        >
-          + Create New Task
-        </button>
-      </div>
+    <>
+      {/* <div className="flex flex-row justify-between mt-10 mb-6 px-6"> */}
+      <h1 className=" font-bold text-gray-900 text-3xl my-10">Today</h1>
+      <button
+        type="button"
+        onClick={() => {
+          setIsAdding(true);
+          setIsEditing(false);
+          setCurrentTask(null);
+        }}
+        className="w-fit px-4 py-2 bg-green-900 text-white rounded-lg shadow hover:bg-green-700"
+      >
+        + New Task
+      </button>
+      {/* </div> */}
 
       {(isAdding || isEditing) && (
         <TaskForm
@@ -146,6 +146,6 @@ export const TaskBoard = () => {
             ))
         )}
       </ul>
-    </div>
+    </>
   );
 };

@@ -5,6 +5,8 @@ import {
   getFormattedDate,
 } from "../utils/common-utils";
 import { useSelector } from "react-redux";
+import { TaskItem } from "../components/TaskItem";
+import { NewTask } from "../components/NewTask";
 
 export const Today = () => {
   console.log(getFormattedDate());
@@ -13,7 +15,6 @@ export const Today = () => {
   );
   return (
     <div>
-      {/* Today's Date Month | Today | Today's Day */}
       <div className="flex flex-row gap-4 ">
         <div className="font-bold">{getCurrentDate()}</div>
         <div className="">|</div>
@@ -22,7 +23,8 @@ export const Today = () => {
         <div className="font-bold">{getCurrentDay()}</div>
       </div>
       <div className="border-b text-gray-500 my-1"></div>
-      {/* Show Tasks of the Day */}
+      <NewTask />
+      {/* <TaskItem /> */}
       <div className="">{todayTask}</div>
       {/* Add new Task */}
     </div>

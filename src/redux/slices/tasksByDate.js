@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  tasksByDate: {},
+  tasks: {},
 };
 const tasksByDate = createSlice({
   name: "tasksByDate",
@@ -9,7 +9,7 @@ const tasksByDate = createSlice({
   reducers: {
     setTasksByDate: (state, action) => {
       const { date, tasks } = action.payload;
-      state.tasksByDate[date] = tasks;
+      state.tasks[date] = tasks;
     },
   },
 });

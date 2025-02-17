@@ -1,21 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../redux/slices/modalSlice";
+import { closeForm } from "../redux/slices/tasksManagementSlice";
+import { TaskForm } from "./TaskForm";
+import Portal from "./Portal";
 
-const Modal = ({ children }) => {
-  const isModalOpen = useSelector((state) => state.ui.isModalOpen);
+export const Modal = () => {
+  const { isOpen, contentKey } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
-  if (!isModalOpen) return null;
+  const componentMap = {
+    createTask: {
+      component: <TaskForm />,
+    },
+  };
 
+  const currentContent = componentMap[contentKey];
+
+  if (!isOpen || !currentContent) return null;
+
+  const clickOverlay = () => {
+    dispatch(closeForm());
+    dispatch(closeModal());
+  };
+
+  console.log("portal is on");
   return (
     <Portal containerId="modal-root">
-      <div className="modal-overlay">
-        <div className="modal-content">
-          {children}
-          <button onClick={() => dispatch(closeModal())}>Close</button>
+      <div
+        className={`fixed top-0 left-0 h-full w-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center `}
+        onClick={() => clickOverlay()}
+      >
+        <div className="" onClick={(e) => e.stopPropagation()}>
+          {currentContent.component}
         </div>
       </div>
     </Portal>
   );
 };
-
-export default Modal;

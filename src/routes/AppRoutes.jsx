@@ -16,9 +16,10 @@ export const AppRoutes = () => {
       <Route path={routes.login} element={<Login />} />
       <Route path={routes.signup} element={<Signup />} />
       <Route element={<ProtectedRoute />}>
-        <Route element={<Dashboard />}>
+        <Route path="/" element={<Dashboard />}>
+          <Route index element={<Navigate to={routes.today} />} />
           <Route path={routes.priority} element={<Priority />} />
-          <Route index path={routes.today} element={<Today />} />
+          <Route path={routes.today} element={<Today />} />
           <Route path={routes.inbox} element={<TaskBoard />} />
         </Route>
       </Route>

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { setSearchText } from "../redux/slices/searchSlice";
+// import { setSearchText } from "../redux/slices/searchSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { GoSearch } from "react-icons/go";
+// import { GoSearch } from "react-icons/go";
 import { image } from "../assets";
 import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "./../api/auth";

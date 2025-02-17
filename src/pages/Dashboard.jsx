@@ -12,7 +12,9 @@ export const Dashboard = () => {
   return (
     <div className="flex flex-row w-full h-screen">
       <Navbar />
-      <Outlet />
+      <div className="px-4 sm:px-6  mx-auto my-5 min-h-screen flex flex-col max-w-screen-md w-full flex-grow">
+        <Outlet />
+      </div>
     </div>
   );
 };

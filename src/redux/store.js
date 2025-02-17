@@ -11,6 +11,7 @@ const persistConfig = {
     "tasksByDate",
     "tasksByPriority",
     "tasksPendingBeforeToday",
+    "allTasks",
   ],
 };
 

@@ -1,6 +1,7 @@
 import api from "./axiosInstance";
 
 export const createTask = async (data) => {
+  console.log("Creating Task");
   try {
     const response = await api.post("", data);
     return response?.data;
