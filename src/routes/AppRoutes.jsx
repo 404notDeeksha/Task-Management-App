@@ -18,8 +18,8 @@ export const AppRoutes = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Dashboard />}>
           <Route index element={<Navigate to={routes.today} />} />
-          <Route path={routes.priority} element={<Priority />} />
           <Route path={routes.today} element={<Today />} />
+          <Route path={routes.priority} element={<Priority />} />
           <Route path={routes.inbox} element={<TaskBoard />} />
         </Route>
       </Route>

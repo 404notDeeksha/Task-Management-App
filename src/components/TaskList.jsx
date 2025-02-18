@@ -5,6 +5,8 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { deleteTask } from "../api/tasks";
+import { startEditing } from "../redux/slices/tasksManagementSlice";
+import { openModal } from "../redux/slices/modalSlice";
 
 export const TaskList = ({ tasks }) => {
   const { isAdding, isEditing, currentTask } = useSelector(
@@ -44,15 +46,13 @@ export const TaskList = ({ tasks }) => {
                     {task.formattedDueDate}
                   </div>
                 </div>
-
-                {/* <p className="text-gray-600">Status: {task.status}</p> */}
-                {/* <p className="text-gray-600">Priority: {task.priority}</p> */}
               </div>
 
               <div className="flex gap-2">
                 <button
                   onClick={() => {
-                    dispatch(isEditing());
+                    dispatch(startEditing(task));
+                    dispatch(openModal("createTask"));
                   }}
                   className="text-green-500 hover:text-green-800 mt-2"
                 >

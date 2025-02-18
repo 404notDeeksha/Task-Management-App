@@ -15,6 +15,7 @@ export const createTask = async (data) => {
 };
 
 export const updateTask = async (data, id) => {
+  console.log(data);
   try {
     const response = await api.put(`/${id}`, data);
     return response.data;

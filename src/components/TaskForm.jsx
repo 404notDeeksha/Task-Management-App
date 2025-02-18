@@ -6,14 +6,15 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { closeForm } from "../redux/slices/tasksManagementSlice";
 import { createTask, updateTask } from "../api/tasks";
-import { addTask } from "../redux/slices/alltasksSlice";
+import { addTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { closeModal } from "../redux/slices/modalSlice";
 
 export const TaskForm = () => {
-  const { isAdding, isEditing, defaultValues } = useSelector(
+  const { isAdding, isEditing, currentTask } = useSelector(
     (state) => state.taskManagement
   );
   const dispatch = useDispatch();
+  console.log("CURRENT TASK", isAdding, isEditing, currentTask);
 
   const {
     control,
@@ -22,23 +23,22 @@ export const TaskForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: defaultValues?.title || "",
-      description: defaultValues?.description || "",
-      dueDate: defaultValues?.dueDate ? new Date(defaultValues.dueDate) : null,
-      status: defaultValues?.status || "",
-      priority: defaultValues?.priority || "",
+      title: currentTask?.title || "",
+      description: currentTask?.description || "",
+      dueDate: currentTask?.dueDate ? new Date(currentTask.dueDate) : null,
+      status: currentTask?.status || "",
+      priority: currentTask?.priority || "",
     },
   });
 
   const handleAddOrUpdateTask = async (data) => {
-    console.log(data);
     try {
       let result;
-      if (defaultValues) {
-        result = await updateTask(data, defaultValues._id);
+      if (currentTask) {
+        result = await updateTask(data, currentTask.id);
         if (result?.success) {
           console.log("Updated Task", result.data);
-          dispatch(updateTask(result.data));
+          dispatch(updateTaskState(result.data));
         }
       } else {
         result = await createTask(data);
@@ -136,7 +136,7 @@ export const TaskForm = () => {
               type="submit"
               className="flex-1 sm:flex-none px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm"
             >
-              {defaultValues?._id ? "Update Task" : "Add Task"}
+              {currentTask?.id ? "Update Task" : "Add Task"}
             </button>
           </div>
         </form>

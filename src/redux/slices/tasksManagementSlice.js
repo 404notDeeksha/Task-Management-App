@@ -11,7 +11,6 @@ const taskManagementSlice = createSlice({
   initialState,
   reducers: {
     startAdding: (state) => {
-      console.log("Adding");
       state.isAdding = true;
       state.isEditing = false;
       state.currentTask = null;
@@ -20,6 +19,7 @@ const taskManagementSlice = createSlice({
       state.isAdding = false;
       state.isEditing = true;
       state.currentTask = action.payload;
+      console.log("Editing", state.currentTask);
     },
     closeForm: (state) => {
       state.isAdding = false;

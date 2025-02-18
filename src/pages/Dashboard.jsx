@@ -4,11 +4,11 @@ import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 
 export const Dashboard = () => {
-  const data = useSelector((state) => state.auth.user);
-  if (!data) {
+  const user = useSelector((state) => state.auth.user);
+  if (!user) {
     return <div>Loading...</div>;
   }
-  console.log("Data", data);
+  console.log("user", user);
   return (
     <div className="flex flex-row w-full h-screen">
       <Navbar />

@@ -10,7 +10,6 @@ import { NewTask } from "../components/NewTask";
 
 export const Today = () => {
   console.log(getFormattedDate());
-
   const tasks = useSelector((state) => state?.allTasks?.tasks);
   console.log(tasks);
   return (
