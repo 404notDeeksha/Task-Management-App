@@ -7,7 +7,7 @@ export const Inbox = () => {
   return (
     <div className="flex flex-col mt-10 ">
       <h1 className=" font-bold text-gray-900 text-3xl">Inbox</h1>
-      <div className="">
+      <div className="mt-8">
         <TaskList tasks={allTasks} />
       </div>
     </div>

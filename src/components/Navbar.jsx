@@ -1,7 +1,4 @@
-import { useState } from "react";
-// import { setSearchText } from "../redux/slices/searchSlice";
 import { useSelector, useDispatch } from "react-redux";
-// import { GoSearch } from "react-icons/go";
 import { image } from "../assets";
 import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "./../api/auth";
@@ -9,9 +6,7 @@ import { logout } from "../redux/slices/authSlice";
 import { routes } from "../routes/routes";
 
 export default function Navbar() {
-  // const search = useSelector((state) => state.search.text);
   const userName = useSelector((state) => state.auth.user.name);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const userInitial = userName ? userName.charAt(0).toUpperCase() : "U";
   const dispatch = useDispatch();
 

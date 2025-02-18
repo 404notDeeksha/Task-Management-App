@@ -8,7 +8,6 @@ import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Priority } from "./../pages/Priority";
 import { routes } from "./routes";
 import { Today } from "./../pages/Today";
-// import { TaskBoard } from "./../components/TaskBoard";
 import { Inbox } from "../pages/Inbox";
 
 export const AppRoutes = () => {
