@@ -27,14 +27,14 @@ export const Today = () => {
   console.log("filtered tasks", tasks);
   return (
     <div>
-      <div className="flex flex-row gap-4 mt-10 ">
+      <div className="flex flex-row gap-4 mt-10 w-fit rounded font-bold text-white text-xl bg-green-900 p-2 px-4 mb-10  ">
         <div className="font-bold">{getCurrentDate()}</div>
         <div className="">|</div>
         <div className="font-bold">Today</div>
         <div className="">|</div>
         <div className="font-bold">{getCurrentDay()}</div>
       </div>
-      <div className="border-b text-gray-500 mb-6"></div>
+      {/* <div className="border-b text-gray-500 mb-6"></div> */}
       <NewTask />
       <div className="my-4">
         <TaskList tasks={tasks} />
