@@ -5,14 +5,14 @@ import {
   getFormattedDate,
 } from "../utils/common-utils";
 import { useSelector } from "react-redux";
-import { TaskItem } from "../components/TaskItem";
+import { TaskList } from "../components/TaskList";
 import { NewTask } from "../components/NewTask";
 
 export const Today = () => {
   console.log(getFormattedDate());
-  const todayTask = useSelector(
-    (state) => state?.tasksByDate?.tasksByDate[getFormattedDate()]
-  );
+
+  const tasks = useSelector((state) => state?.allTasks?.tasks);
+  console.log(tasks);
   return (
     <div>
       <div className="flex flex-row gap-4 ">
@@ -24,9 +24,8 @@ export const Today = () => {
       </div>
       <div className="border-b text-gray-500 my-1"></div>
       <NewTask />
-      {/* <TaskItem /> */}
-      <div className="">{todayTask}</div>
-      {/* Add new Task */}
+      <TaskList tasks={tasks} />
+      {/* <TaskList /> */}
     </div>
   );
 };

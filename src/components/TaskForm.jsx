@@ -124,7 +124,10 @@ export const TaskForm = () => {
           <div className="flex justify-between mt-4 w-full flex-wrap gap-2">
             <button
               type="button"
-              onClick={() => dispatch(closeForm())}
+              onClick={() => {
+                dispatch(closeForm());
+                dispatch(closeModal());
+              }}
               className="flex-1 sm:flex-none px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 text-sm"
             >
               Cancel

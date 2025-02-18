@@ -11,6 +11,7 @@ const taskManagementSlice = createSlice({
   initialState,
   reducers: {
     startAdding: (state) => {
+      console.log("Adding");
       state.isAdding = true;
       state.isEditing = false;
       state.currentTask = null;
