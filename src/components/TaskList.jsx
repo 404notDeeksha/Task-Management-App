@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTask } from "../redux/slices/alltasksSlice";
+import { removeTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineModeEditOutline } from "react-icons/md";
@@ -25,6 +25,7 @@ export const TaskList = ({ tasks }) => {
       console.log("Error", error);
     }
   };
+
   return (
     <ul className=" rounded-lg ">
       {tasks.length === 0 ? (
@@ -37,14 +38,54 @@ export const TaskList = ({ tasks }) => {
               key={task._id}
               className="border-b pb-4 last:border-none flex flex-row justify-between mb-4 "
             >
-              <div className="flex flex-col gap-1">
-                <h3 className="text-black font-[500]">{task.title}</h3>
-                <div className=" text-xs text-gray-600">{task.description}</div>
+              <div className="flex flex-row gap-4">
+                <input
+                  type="checkbox"
+                  name={task._id}
+                  className="appearance-none w-4 h-4 rounded-[50%] cursor-pointer  outline-black outline
+                   checked:bg-green-800 mt-1"
+                  checked={task.status === "Completed"}
+                  onChange={() =>
+                    dispatch(
+                      updateTaskState({
+                        ...task,
+                        status:
+                          task.status === "Completed" ? "To Do" : "Completed",
+                      })
+                    )
+                  }
+                />
+                <div className="flex flex-col gap-1">
+                  <h3
+                    className={`text-black font-[500] ${
+                      task.status === "Completed" ? "line-through" : ""
+                    }`}
+                  >
+                    {task.title}
+                  </h3>
+                  <div
+                    className={` text-xs text-gray-600  ${
+                      task.status === "Completed" ? "line-through" : ""
+                    }`}
+                  >
+                    {task.description}
+                  </div>
 
-                <div className="flex flex-row gap-2 items-center my-2">
-                  <IoCalendarClearOutline className="text-green-800" />
-                  <div className="text-gray-600 text-xs">
-                    {formatDate(task.dueDate)}
+                  {task.status !== "Completed" && (
+                    <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit p-2 ">
+                      {task.status}
+                    </div>
+                  )}
+
+                  <div className="flex flex-row gap-2 items-center my-2">
+                    <IoCalendarClearOutline className="text-green-800" />
+                    <div
+                      className={`text-gray-600 text-xs  ${
+                        task.status === "Completed" ? "line-through" : ""
+                      }`}
+                    >
+                      {formatDate(task.dueDate)}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -19,9 +19,15 @@ const allTasksSlice = createSlice({
       }
     },
     updateTaskState: (state, action) => {
+      console.log("action", action);
       state.tasks = state.tasks.map((task) =>
         task._id === action.payload._id ? action.payload : task
       );
+
+      state.tasks = [
+        ...state.tasks.filter((task) => task.status !== "Completed"),
+        ...state.tasks.filter((task) => task.status === "Completed"),
+      ];
     },
     removeTask: (state, action) => {
       state.tasks = state.tasks.filter((task) => task._id !== action.payload);
