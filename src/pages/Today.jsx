@@ -1,22 +1,33 @@
 import React from "react";
 import {
-  formattedDateDDMMMYYYY,
   getCurrentDate,
   getCurrentDay,
-  getFormattedDate,
 } from "../utils/common-utils";
 import { useSelector } from "react-redux";
 import { TaskList } from "../components/TaskList";
 import { NewTask } from "../components/NewTask";
 
 export const Today = () => {
-  console.log(getFormattedDate());
-  const currentDate = formattedDateDDMMMYYYY;
-  const tasks = useSelector((state) => state?.allTasks?.tasks);
-  tasks.filter((tasks) => tasks.formattedDueDate === currentDate);
-  console.log("filtered tasks", tasks, currentDate);
-  //filter tasks with current date & send
-  console.log(tasks);
+  let tasks = useSelector((state) => state?.allTasks?.tasks);
+
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
+  const isSameDate = (date1, date2) => {
+    return (
+      date1?.getFullYear() === date2?.getFullYear() &&
+      date1?.getMonth() === date2?.getMonth() &&
+      date1?.getDate() === date2?.getDate()
+    );
+  };
+
+  tasks = tasks.filter((task) => {
+    const taskDate = new Date(task.dueDate);
+    taskDate.setHours(0, 0, 0, 0);
+    return isSameDate(taskDate, currentDate);
+  });
+
+  console.log("filtered tasks", tasks);
   return (
     <div>
       <div className="flex flex-row gap-4 mt-10 ">
