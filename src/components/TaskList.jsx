@@ -7,6 +7,7 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import { deleteTask } from "../api/tasks";
 import { startEditing } from "../redux/slices/tasksManagementSlice";
 import { openModal } from "../redux/slices/modalSlice";
+import { formatDate } from "../utils/common-utils";
 
 export const TaskList = ({ tasks }) => {
   const { isAdding, isEditing, currentTask } = useSelector(
@@ -25,7 +26,7 @@ export const TaskList = ({ tasks }) => {
     }
   };
   return (
-    <ul className=" p-4 rounded-lg ">
+    <ul className=" rounded-lg ">
       {tasks.length === 0 ? (
         <p className="text-gray-500">No tasks yet. Add one!</p>
       ) : (
@@ -34,7 +35,7 @@ export const TaskList = ({ tasks }) => {
           .map((task) => (
             <li
               key={task._id}
-              className="p-2 border-b mb-2 last:border-none flex flex-row justify-between "
+              className="border-b my-4 pb-4 last:border-none flex flex-row justify-between "
             >
               <div className="flex flex-col gap-1">
                 <h3 className="text-black font-[500]">{task.title}</h3>
@@ -43,7 +44,7 @@ export const TaskList = ({ tasks }) => {
                 <div className="flex flex-row gap-2 items-center my-2">
                   <IoCalendarClearOutline className="text-green-800" />
                   <div className="text-gray-600 text-xs">
-                    {task.formattedDueDate}
+                    {formatDate(task.dueDate)}
                   </div>
                 </div>
               </div>

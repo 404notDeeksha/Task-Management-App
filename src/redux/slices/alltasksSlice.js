@@ -3,13 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const allTasksSlice = createSlice({
   name: "allTasks",
   initialState: {
-    tasks: [], // Stores all tasks
+    tasks: [],
     loading: false,
     error: null,
   },
   reducers: {
     setAllTasks: (state, action) => {
-      state.tasks = action.payload; // Store all tasks
+      state.tasks = action.payload;
     },
     addTask: (state, action) => {
       if (Array.isArray(state.tasks)) {

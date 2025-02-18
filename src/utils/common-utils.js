@@ -26,3 +26,12 @@ export const getFormattedDate = () => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const formatDate = (date) => {
+  // DD MMM YYYY
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(date));
+};

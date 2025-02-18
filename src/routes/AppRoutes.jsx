@@ -8,7 +8,8 @@ import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Priority } from "./../pages/Priority";
 import { routes } from "./routes";
 import { Today } from "./../pages/Today";
-import { TaskBoard } from "./../components/TaskBoard";
+// import { TaskBoard } from "./../components/TaskBoard";
+import { Inbox } from "../pages/Inbox";
 
 export const AppRoutes = () => {
   return (
@@ -20,7 +21,7 @@ export const AppRoutes = () => {
           <Route index element={<Navigate to={routes.today} />} />
           <Route path={routes.today} element={<Today />} />
           <Route path={routes.priority} element={<Priority />} />
-          <Route path={routes.inbox} element={<TaskBoard />} />
+          <Route path={routes.inbox} element={<Inbox />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
