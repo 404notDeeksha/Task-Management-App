@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  getCurrentDate,
-  getCurrentDay,
-} from "../utils/common-utils";
+import { getCurrentDate, getCurrentDay } from "../utils/common-utils";
 import { useSelector } from "react-redux";
 import { TaskList } from "../components/TaskList";
 import { NewTask } from "../components/NewTask";
@@ -39,8 +36,9 @@ export const Today = () => {
       </div>
       <div className="border-b text-gray-500 mb-6"></div>
       <NewTask />
-
-      <TaskList tasks={tasks} />
+      <div className="my-4">
+        <TaskList tasks={tasks} />
+      </div>
     </div>
   );
 };

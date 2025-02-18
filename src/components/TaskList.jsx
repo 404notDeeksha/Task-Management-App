@@ -35,7 +35,7 @@ export const TaskList = ({ tasks }) => {
           .map((task) => (
             <li
               key={task._id}
-              className="border-b my-4 pb-4 last:border-none flex flex-row justify-between "
+              className="border-b pb-4 last:border-none flex flex-row justify-between mb-4 "
             >
               <div className="flex flex-col gap-1">
                 <h3 className="text-black font-[500]">{task.title}</h3>
