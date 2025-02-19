@@ -8,13 +8,13 @@ import { closeForm } from "../redux/slices/tasksManagementSlice";
 import { createTask, updateTask } from "../api/tasks";
 import { addTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { closeModal } from "../redux/slices/modalSlice";
+import { fetchTasks } from "../utils/fetchTasks";
 
 export const TaskForm = () => {
   const { isAdding, isEditing, currentTask } = useSelector(
     (state) => state.taskManagement
   );
   const dispatch = useDispatch();
-  console.log("CURRENT TASK", isAdding, isEditing, currentTask);
 
   const {
     control,
@@ -38,17 +38,21 @@ export const TaskForm = () => {
         result = await updateTask(data, currentTask.id);
         if (result?.success) {
           console.log("Updated Task", result.data);
-          dispatch(updateTaskState(result.data));
+          fetchTasks(dispatch);
+          dispatch(closeForm());
+
+          // dispatch(updateTaskState(result.data));
         }
       } else {
         result = await createTask(data);
         if (result?.success) {
-          dispatch(addTask(result.data));
+          fetchTasks(dispatch);
+          dispatch(closeForm());
           console.log("Created Task", result.data);
         }
       }
     } catch (error) {
-      console.log("Error", error);
+      console.log("Error in Creating or Updating Task", error);
     }
     dispatch(closeForm());
     dispatch(closeModal());

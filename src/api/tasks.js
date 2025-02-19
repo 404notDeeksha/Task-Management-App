@@ -1,7 +1,7 @@
 import api from "./axiosInstance";
 
 export const createTask = async (data) => {
-  console.log("Creating Task");
+  console.log("Creating");
   try {
     const response = await api.post("", data);
     return response?.data;
@@ -42,6 +42,7 @@ export const deleteTask = async (id) => {
   }
 };
 
+//AllTasks
 export const getTasks = async () => {
   try {
     const response = await api.get("");
@@ -55,28 +56,15 @@ export const getTasks = async () => {
   }
 };
 
-export const getTasksOfDay = async (date) => {
-  try {
-    const response = await api.get(`/:${date}`);
-    return response?.data;
-  } catch (error) {
-    if (error.response && error.response.data && error.response.data.message) {
-      throw new Error(error.response.data.message);
-    } else {
-      throw new Error("Something went wrong. Please try again.");
-    }
-  }
-};
-
-export const getTasksPriorityWise = async (priority) => {
-  try {
-    const response = await api.get(`/:${priority}`);
-    return response?.data;
-  } catch (error) {
-    if (error.response && error.response.data && error.response.data.message) {
-      throw new Error(error.response.data.message);
-    } else {
-      throw new Error("Something went wrong. Please try again.");
-    }
-  }
-};
+// export const getTasksOfDay = async (date) => {
+//   try {
+//     const response = await api.get(`/:${date}`);
+//     return response?.data;
+//   } catch (error) {
+//     if (error.response && error.response.data && error.response.data.message) {
+//       throw new Error(error.response.data.message);
+//     } else {
+//       throw new Error("Something went wrong. Please try again.");
+//     }
+//   }
+// };

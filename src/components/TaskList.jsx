@@ -4,10 +4,11 @@ import { removeTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineModeEditOutline } from "react-icons/md";
-import { deleteTask } from "../api/tasks";
+import { deleteTask, updateTask } from "../api/tasks";
 import { startEditing } from "../redux/slices/tasksManagementSlice";
 import { openModal } from "../redux/slices/modalSlice";
 import { currentDate, formatDate, isPreviousDate } from "../utils/common-utils";
+import { fetchTasks } from "../utils/fetchTasks";
 
 export const TaskList = ({ tasks }) => {
   const { isAdding, isEditing, currentTask } = useSelector(
@@ -17,12 +18,28 @@ export const TaskList = ({ tasks }) => {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      const response = await deleteTask(taskId);
-      if (response.success) {
-        dispatch(removeTask(taskId));
+      const result = await deleteTask(taskId);
+      if (result.success) {
+        fetchTasks(dispatch);
+        // dispatch(removeTask(taskId));
       }
     } catch (error) {
       console.log("Error", error);
+    }
+  };
+
+  const handleCheckbox = async (task, id) => {
+    const data = {
+      ...task,
+      status: task.status === "Completed" ? "To Do" : "Completed",
+    };
+    try {
+      const result = await updateTask(data, id);
+      if (result?.success) {
+        fetchTasks(dispatch);
+      }
+    } catch (err) {
+      console.log("Error updating Task status", err);
     }
   };
 
@@ -45,19 +62,20 @@ export const TaskList = ({ tasks }) => {
                   className="appearance-none w-4 h-4 rounded-[50%] cursor-pointer border-2 
                    checked:bg-green-800 mt-1"
                   checked={task.status === "Completed"}
-                  onChange={() =>
-                    dispatch(
-                      updateTaskState({
-                        ...task,
-                        status:
-                          task.status === "Completed" ? "To Do" : "Completed",
-                      })
-                    )
+                  onChange={
+                    () => handleCheckbox(task, task._id)
+                    // dispatch(
+                    //   updateTaskState({
+                    //     ...task,
+                    //     status:
+                    //       task.status === "Completed" ? "To Do" : "Completed",
+                    //   })
+                    // )
                   }
                 />
                 <div className="flex flex-col gap-2">
                   <h3
-                    className={`text-black font-[700] montserrat ${
+                    className={`text-black font-[700] montserrat text ${
                       task.status === "Completed" ? "line-through" : ""
                     }`}
                   >
