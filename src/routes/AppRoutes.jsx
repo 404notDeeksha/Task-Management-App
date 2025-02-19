@@ -9,6 +9,7 @@ import { Priority } from "./../pages/Priority";
 import { routes } from "./routes";
 import { Today } from "./../pages/Today";
 import { Inbox } from "../pages/Inbox";
+import { Pending } from "../pages/Pending";
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
           <Route path={routes.today} element={<Today />} />
           <Route path={routes.priority} element={<Priority />} />
           <Route path={routes.inbox} element={<Inbox />} />
+          <Route path={routes.pending} element={<Pending />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />

@@ -61,6 +61,16 @@ export default function Navbar() {
         >
           Priority
         </NavLink>
+        <NavLink
+          to={routes.pending}
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-white text-green-900 " : ""
+            } w-full hover:bg-white hover:text-green-900 font-bold py-3 rounded pl-5 text-lg cursor-pointer block `
+          }
+        >
+          Pending
+        </NavLink>
       </div>
 
       <div className="relative flex flex-row items-center group hover:bg-white hover:text-green-900  rounded">

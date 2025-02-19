@@ -4,4 +4,5 @@ export const routes = {
   inbox: "/inbox",
   priority: "/priority",
   today: "/today",
+  pending: "/pending",
 };
