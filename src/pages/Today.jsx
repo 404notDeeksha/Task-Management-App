@@ -8,9 +8,10 @@ export const Today = () => {
   let tasks = useSelector((state) => state?.allTasks?.tasks);
 
   const currentDate = new Date();
-  currentDate.setHours(0, 0, 0, 0);
+  // currentDate.setHours(0, 0, 0, 0);
 
   const isSameDate = (date1, date2) => {
+    date1 = new Date(date1);
     return (
       date1?.getFullYear() === date2?.getFullYear() &&
       date1?.getMonth() === date2?.getMonth() &&
@@ -19,14 +20,14 @@ export const Today = () => {
   };
 
   tasks = tasks.filter((task) => {
-    const taskDate = new Date(task.dueDate);
-    taskDate.setHours(0, 0, 0, 0);
-    return isSameDate(taskDate, currentDate);
+    // const taskDate = new Date(task.dueDate);
+    // taskDate.setHours(0, 0, 0, 0);
+    return isSameDate(task.dueDate, currentDate);
   });
 
-  console.log("filtered tasks", tasks);
+  // console.log("filtered tasks", tasks);
   return (
-    <div>
+    <div className="flex flex-col h-screen pb-20">
       <div className="flex flex-row gap-4 mt-10 w-fit rounded font-bold text-white text-xl bg-green-900 p-2 px-4 mb-10  ">
         <div className="font-bold">{getCurrentDate()}</div>
         <div className="">|</div>
@@ -35,7 +36,7 @@ export const Today = () => {
         <div className="font-bold">{getCurrentDay()}</div>
       </div>
       <NewTask />
-      <div className="my-4">
+      <div className="my-4 flex-1 overflow-y-auto scrollbar-hide">
         <TaskList tasks={tasks} />
       </div>
     </div>

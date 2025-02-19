@@ -12,7 +12,7 @@ export const Pending = () => {
   });
 
   return (
-    <div>
+    <div className="flex flex-col h-screen pb-20">
       <div className="flex flex-row gap-4 mt-10 w-fit rounded font-bold text-white text-xl bg-green-900 p-2 px-4 mb-10  ">
         <div className="font-bold">Pending</div>
       </div>
