@@ -43,7 +43,7 @@ export const TaskList = ({ tasks }) => {
                 <input
                   type="checkbox"
                   name={task._id}
-                  className="appearance-none w-4 h-4 rounded-[50%] cursor-pointer  outline-black outline
+                  className="appearance-none w-4 h-4 rounded-[50%] cursor-pointer border-2 
                    checked:bg-green-800 mt-1"
                   checked={task.status === "Completed"}
                   onChange={() =>

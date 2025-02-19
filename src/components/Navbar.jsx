@@ -16,7 +16,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-green-900 text-white p-4 flex flex-col w-[300px] justify-between shadow-lg">
+    <nav className="bg-green-900 text-white p-4 flex flex-col 
+    w-[300px] justify-between shadow-lg">
       <div className="flex flex-col items-start gap-5">
         <Link to={routes.inbox} className="flex flex-row items-center gap-3">
           <img
