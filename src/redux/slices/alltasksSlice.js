@@ -42,19 +42,26 @@ const allTasksSlice = createSlice({
 const sortTasks = (tasks, sortBy) => {
   if (!sortBy) return tasks;
 
+  //a-a b-b
   return tasks.sort((a, b) => {
     switch (sortBy) {
       case "dueDateAsc":
         return new Date(a.dueDate) - new Date(b.dueDate);
+      case "createdAtDesc":
+        return new Date(b.createdAt) - new Date(a.createdAt);
       case "priority":
         const priorityOrder = { High: 1, Medium: 2, Low: 3 };
         return priorityOrder[a.priority] - priorityOrder[b.priority];
       case "progress-asc":
-        const ascProgressOrder = { ToDo: 1, InProgress: 2, Completed: 3 };
-        return ascProgressOrder[a.progress] - ascProgressOrder[b.progress];
+        const ascProgressOrder = { "To Do": 1, "In Progress": 2, Completed: 3 };
+        return ascProgressOrder[a.status] - ascProgressOrder[b.status];
       case "progress-desc":
-        const descProgressOrder = { ToDo: 2, InProgress: 1, Completed: 3 };
-        return descProgressOrder[a.progress] - descProgressOrder[b.progress];
+        const descProgressOrder = {
+          "In Progress": 1,
+          "To Do": 2,
+          Completed: 3,
+        };
+        return descProgressOrder[a.status] - descProgressOrder[b.status];
       default:
         return 0;
     }

@@ -14,7 +14,6 @@ export const TaskList = ({ tasks }) => {
     (state) => state.taskManagement
   );
   const dispatch = useDispatch();
-  // const currentDate = currentDate;
 
   const handleDeleteTask = async (taskId) => {
     try {
@@ -56,7 +55,7 @@ export const TaskList = ({ tasks }) => {
                     )
                   }
                 />
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-2">
                   <h3
                     className={`text-black font-[700] montserrat ${
                       task.status === "Completed" ? "line-through" : ""
@@ -73,11 +72,11 @@ export const TaskList = ({ tasks }) => {
                   </div>
 
                   <div className="flex gap-5">
-                    <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 ">
+                    <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 font-bold ">
                       {task.priority}
                     </div>
                     {task.status !== "Completed" && (
-                      <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 ">
+                      <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 font-bold ">
                         {task.status}
                       </div>
                     )}

@@ -19,28 +19,28 @@ export const Priority = () => {
 
       <div className="flex-1 overflow-y-auto  scrollbar-hide">
         <div className="">
-          <h3 className="font-bold text-gray-900 text-lg border-b block  bg-green-100 rounded p-2   ">
+          <h3 className="font-bold text-gray-900 text-lg border-b block  bg-green-50 rounded p-2   ">
             High
           </h3>
-          <div className="mt-3 px-1">
+          <div className="mt-3 px-2">
             <TaskList tasks={highPriorityTasks} />
           </div>
         </div>
 
         <div className="">
-          <h3 className="font-bold text-gray-900 text-lg border-b block  bg-green-100 rounded p-2 ">
+          <h3 className="font-bold text-gray-900 text-lg border-b block  bg-green-50 rounded p-2 ">
             Medium
           </h3>
-          <div className="mt-3 px-1">
+          <div className="mt-3 px-2">
             <TaskList tasks={mediumPriorityTasks} />
           </div>
         </div>
 
         <div className="">
-          <h3 className="font-bold text-gray-900 text-lg border-b block  bg-green-100 rounded p-2 ">
+          <h3 className="font-bold text-gray-900 text-lg border-b block  bg-green-50 rounded p-2 ">
             Low
           </h3>
-          <div className="mt-3 px-1">
+          <div className="mt-3 px-2">
             <TaskList tasks={lowPriorityTasks} />
           </div>
         </div>
