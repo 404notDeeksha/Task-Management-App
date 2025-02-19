@@ -7,13 +7,14 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import { deleteTask } from "../api/tasks";
 import { startEditing } from "../redux/slices/tasksManagementSlice";
 import { openModal } from "../redux/slices/modalSlice";
-import { formatDate } from "../utils/common-utils";
+import { currentDate, formatDate, isPreviousDate } from "../utils/common-utils";
 
 export const TaskList = ({ tasks }) => {
   const { isAdding, isEditing, currentTask } = useSelector(
     (state) => state.taskManagement
   );
   const dispatch = useDispatch();
+  // const currentDate = currentDate;
 
   const handleDeleteTask = async (taskId) => {
     try {
@@ -87,6 +88,10 @@ export const TaskList = ({ tasks }) => {
                     <div
                       className={`text-gray-600 text-xs  ${
                         task.status === "Completed" ? "line-through" : ""
+                      } ${
+                        isPreviousDate(task.dueDate, currentDate)
+                          ? "text-red-500 font-bold"
+                          : ""
                       }`}
                     >
                       {formatDate(task.dueDate)}

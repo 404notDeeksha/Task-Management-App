@@ -34,7 +34,6 @@ export const Today = () => {
         <div className="">|</div>
         <div className="font-bold">{getCurrentDay()}</div>
       </div>
-      {/* <div className="border-b text-gray-500 mb-6"></div> */}
       <NewTask />
       <div className="my-4">
         <TaskList tasks={tasks} />

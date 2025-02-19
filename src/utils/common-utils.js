@@ -16,3 +16,22 @@ export const formatDate = (date) => {
     year: "numeric",
   }).format(new Date(date));
 };
+
+export const isPreviousDate = (date1, date2) => {
+  if (!date1 || !date2) return false;
+  date1 = new Date(date1);
+  const d1 = new Date(
+    date1?.getFullYear(),
+    date1?.getMonth(),
+    date1?.getDate()
+  );
+  const d2 = new Date(
+    date2?.getFullYear(),
+    date2?.getMonth(),
+    date2?.getDate()
+  );
+
+  return d1.getTime() === d2.getTime() - 86400000; // 86400000 ms = 1 day
+};
+
+export const currentDate = new Date();
