@@ -6,7 +6,7 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { closeForm } from "../redux/slices/tasksManagementSlice";
 import { createTask, updateTask } from "../api/tasks";
-import { addTask, updateTaskState } from "../redux/slices/alltasksSlice";
+// import { addTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { closeModal } from "../redux/slices/modalSlice";
 import { fetchTasks } from "../utils/fetchTasks";
 

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  tasks: [],
+  sortBy: "",
+};
 const allTasksSlice = createSlice({
   name: "allTasks",
-  initialState: {
-    tasks: [],
-    sortBy: null,
-  },
+  initialState,
   reducers: {
     setAllTasks: (state, action) => {
       state.tasks = action.payload;
@@ -14,35 +15,15 @@ const allTasksSlice = createSlice({
       state.sortBy = action.payload;
       state.tasks = sortTasks([...state.tasks], action.payload);
     },
-
-    addTask: (state, action) => {
-      if (Array.isArray(state.tasks)) {
-        state.tasks.push(action.payload);
-      } else {
-        state.tasks = [action.payload];
-      }
-    },
-    updateTaskState: (state, action) => {
-      state.tasks = state.tasks.map((task) =>
-        task._id === action.payload._id ? action.payload : task
-      );
-
-      state.tasks = [
-        ...state.tasks.filter((task) => task.status !== "Completed"),
-        ...state.tasks.filter((task) => task.status === "Completed"),
-      ];
-    },
-    removeTask: (state, action) => {
-      state.tasks = state.tasks.filter((task) => task._id !== action.payload);
-    },
+    resetAllTasks: () => initialState,
   },
 });
 
 const sortTasks = (tasks, sortBy) => {
-  if (!sortBy) return tasks;
+  if (!sortBy) return [...tasks];
 
   //a-a b-b
-  return tasks.sort((a, b) => {
+  return [...tasks].sort((a, b) => {
     switch (sortBy) {
       case "dueDateAsc":
         return new Date(a.dueDate) - new Date(b.dueDate);
@@ -56,17 +37,16 @@ const sortTasks = (tasks, sortBy) => {
         return ascProgressOrder[a.status] - ascProgressOrder[b.status];
       case "progress-desc":
         const descProgressOrder = {
-          "In Progress": 1,
-          "To Do": 2,
+          "To Do": 1,
+          "In Progress": 2,
           Completed: 3,
         };
-        return descProgressOrder[a.status] - descProgressOrder[b.status];
+        return descProgressOrder[b.status] - descProgressOrder[a.status];
       default:
         return 0;
     }
   });
 };
 
-export const { setAllTasks, addTask, updateTaskState, removeTask, setSortBy } =
-  allTasksSlice.actions;
+export const { setAllTasks, setSortBy, resetAllTasks } = allTasksSlice.actions;
 export default allTasksSlice.reducer;

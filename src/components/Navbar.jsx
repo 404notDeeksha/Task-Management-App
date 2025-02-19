@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "./../api/auth";
 import { logout } from "../redux/slices/authSlice";
 import { routes } from "../routes/routes";
+import { resetAllTasks } from "../redux/slices/alltasksSlice";
 
 export default function Navbar() {
   const userName = useSelector((state) => state.auth.user.name);
@@ -12,12 +13,15 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logoutUser();
+    dispatch(resetAllTasks());
     dispatch(logout());
   };
 
   return (
-    <nav className="bg-green-900 text-white p-4 flex flex-col 
-    w-[300px] justify-between shadow-lg">
+    <nav
+      className="bg-green-900 text-white p-4 flex flex-col 
+    w-[300px] justify-between shadow-lg"
+    >
       <div className="flex flex-col items-start gap-5">
         <Link to={routes.inbox} className="flex flex-row items-center gap-3">
           <img

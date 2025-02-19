@@ -55,16 +55,3 @@ export const getTasks = async () => {
     }
   }
 };
-
-// export const getTasksOfDay = async (date) => {
-//   try {
-//     const response = await api.get(`/:${date}`);
-//     return response?.data;
-//   } catch (error) {
-//     if (error.response && error.response.data && error.response.data.message) {
-//       throw new Error(error.response.data.message);
-//     } else {
-//       throw new Error("Something went wrong. Please try again.");
-//     }
-//   }
-// };

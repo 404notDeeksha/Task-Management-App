@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineModeEditOutline } from "react-icons/md";
@@ -21,7 +20,6 @@ export const TaskList = ({ tasks }) => {
       const result = await deleteTask(taskId);
       if (result.success) {
         fetchTasks(dispatch);
-        // dispatch(removeTask(taskId));
       }
     } catch (error) {
       console.log("Error", error);
@@ -45,11 +43,11 @@ export const TaskList = ({ tasks }) => {
 
   return (
     <ul className=" rounded-lg ">
-      {tasks.length === 0 ? (
+      {tasks?.length === 0 ? (
         <p className="text-gray-500">No tasks yet. Add one!</p>
       ) : (
         tasks
-          .filter((task) => task._id !== currentTask?._id)
+          ?.filter((task) => task._id !== currentTask?._id)
           .map((task) => (
             <li
               key={task._id}
@@ -62,16 +60,7 @@ export const TaskList = ({ tasks }) => {
                   className="appearance-none w-4 h-4 rounded-[50%] cursor-pointer border-2 
                    checked:bg-green-800 mt-1"
                   checked={task.status === "Completed"}
-                  onChange={
-                    () => handleCheckbox(task, task._id)
-                    // dispatch(
-                    //   updateTaskState({
-                    //     ...task,
-                    //     status:
-                    //       task.status === "Completed" ? "To Do" : "Completed",
-                    //   })
-                    // )
-                  }
+                  onChange={() => handleCheckbox(task, task._id)}
                 />
                 <div className="flex flex-col gap-2">
                   <h3
@@ -93,11 +82,9 @@ export const TaskList = ({ tasks }) => {
                     <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 font-bold ">
                       {task.priority}
                     </div>
-                    {task.status !== "Completed" && (
-                      <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 font-bold ">
-                        {task.status}
-                      </div>
-                    )}
+                    <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 font-bold ">
+                      {task.status}
+                    </div>
                   </div>
 
                   <div className="flex flex-row gap-2 items-center my-2">

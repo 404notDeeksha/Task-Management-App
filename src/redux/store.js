@@ -6,13 +6,7 @@ import rootReducer from "./rootReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [
-    "auth",
-    "tasksByDate",
-    "tasksByPriority",
-    "tasksPendingBeforeToday",
-    "allTasks",
-  ],
+  whitelist: ["auth", "allTasks"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
