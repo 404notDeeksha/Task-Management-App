@@ -6,7 +6,6 @@ import { NewTask } from "../components/NewTask";
 
 export const Inbox = () => {
   const allTasks = useSelector((state) => state.allTasks.tasks);
-  console.log("Sorted Tasks", allTasks);
   return (
     <div className="flex flex-col  mt-10 pb-20 h-screen  ">
       <h1 className="block w-fit rounded font-bold text-white text-3xl bg-green-900 p-2 px-16 ">

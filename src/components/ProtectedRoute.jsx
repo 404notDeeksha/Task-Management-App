@@ -4,7 +4,6 @@ import { routes } from "../routes/routes";
 
 export const ProtectedRoute = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log("Auth", isAuthenticated);
   if (isAuthenticated === undefined) return null;
   return <>{isAuthenticated ? <Outlet /> : <Navigate to={routes.login} />}</>;
 };

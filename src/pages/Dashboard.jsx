@@ -8,7 +8,6 @@ export const Dashboard = () => {
   if (!user) {
     return <div>Loading...</div>;
   }
-  console.log("user", user);
   return (
     <div className="flex flex-row w-full h-screen overflow-hidden">
       <Navbar />
