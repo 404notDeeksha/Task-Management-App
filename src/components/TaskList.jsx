@@ -71,11 +71,16 @@ export const TaskList = ({ tasks }) => {
                     {task.description}
                   </div>
 
-                  {task.status !== "Completed" && (
-                    <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit p-2 ">
-                      {task.status}
+                  <div className="flex gap-5">
+                    <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 ">
+                      {task.priority}
                     </div>
-                  )}
+                    {task.status !== "Completed" && (
+                      <div className="text-xs text-gray-600 mt-2 bg-green-200 w-fit rounded p-2 ">
+                        {task.status}
+                      </div>
+                    )}
+                  </div>
 
                   <div className="flex flex-row gap-2 items-center my-2">
                     <IoCalendarClearOutline className="text-green-800" />
