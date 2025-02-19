@@ -7,10 +7,13 @@ body {
     font-family: 'Cabin','Montserrat';
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
+.scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  .scrollbar-hide {
+.scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+.montserrat{
+  font-family: 'Montserrat', 'sans';
+}

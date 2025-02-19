@@ -58,14 +58,14 @@ export const TaskList = ({ tasks }) => {
                 />
                 <div className="flex flex-col gap-1">
                   <h3
-                    className={`text-black font-[500] ${
+                    className={`text-black font-[700] montserrat ${
                       task.status === "Completed" ? "line-through" : ""
                     }`}
                   >
                     {task.title}
                   </h3>
                   <div
-                    className={` text-xs text-gray-600  ${
+                    className={` text-sm text-gray-600  ${
                       task.status === "Completed" ? "line-through" : ""
                     }`}
                   >
