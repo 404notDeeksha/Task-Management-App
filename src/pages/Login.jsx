@@ -100,13 +100,11 @@ export const Login = () => {
           </button>
         </form>
 
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{" "}
-            <Link to={routes.signup} className="underline">
-              Sign up
-            </Link>
-          </p>
+        <div className="mt-4 text-sm flex flex-row gap-2 items-center justify-center">
+          <p className=" text-gray-600">Don't have an account? </p>
+          <Link to={routes.signup} className="underline">
+            Sign up
+          </Link>
         </div>
       </div>
     </div>
