@@ -30,8 +30,7 @@ export const isPreviousDate = (date1, date2) => {
     date2?.getMonth(),
     date2?.getDate()
   );
-
-  return d1.getTime() === d2.getTime() - 86400000; // 86400000 ms = 1 day
+  return d1.getTime() < d2.getTime();
 };
 
 export const currentDate = new Date();
