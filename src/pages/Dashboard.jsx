@@ -6,6 +6,8 @@ import { fetchTasks } from "../utils/fetchTasks";
 
 export const Dashboard = () => {
   const user = useSelector((state) => state.auth.user);
+  const sortBy = useSelector((state) => state.allTasks.sortBy);
+
   const dispatch = useDispatch();
 
   if (!user) {
@@ -13,7 +15,7 @@ export const Dashboard = () => {
   }
 
   useEffect(() => {
-    fetchTasks(dispatch);
+    fetchTasks(dispatch, sortBy);
   }, []);
 
   return (

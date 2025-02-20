@@ -13,13 +13,15 @@ export const TaskList = ({ tasks }) => {
   const { isAdding, isEditing, currentTask } = useSelector(
     (state) => state.taskManagement
   );
+  const sortBy = useSelector((state) => state.allTasks.sortBy);
+
   const dispatch = useDispatch();
 
   const handleDeleteTask = async (taskId) => {
     try {
       const result = await deleteTask(taskId);
       if (result.success) {
-        fetchTasks(dispatch);
+        fetchTasks(dispatch, sortBy);
       }
     } catch (error) {
       console.log("Error", error);
@@ -34,7 +36,7 @@ export const TaskList = ({ tasks }) => {
     try {
       const result = await updateTask(data, id);
       if (result?.success) {
-        fetchTasks(dispatch);
+        fetchTasks(dispatch, sortBy);
       }
     } catch (err) {
       console.log("Error updating Task status", err);

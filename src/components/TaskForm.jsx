@@ -6,15 +6,17 @@ import { IoCalendarClearOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { closeForm } from "../redux/slices/tasksManagementSlice";
 import { createTask, updateTask } from "../api/tasks";
-// import { addTask, updateTaskState } from "../redux/slices/alltasksSlice";
 import { closeModal } from "../redux/slices/modalSlice";
 import { fetchTasks } from "../utils/fetchTasks";
+import { setSortBy } from "../redux/slices/alltasksSlice";
 
 export const TaskForm = () => {
   const { isAdding, isEditing, currentTask } = useSelector(
     (state) => state.taskManagement
   );
   const dispatch = useDispatch();
+  const sortBy = useSelector((state) => state.allTasks.sortBy);
+  console.log("current - sortBy", sortBy);
 
   const {
     control,
@@ -38,19 +40,15 @@ export const TaskForm = () => {
         result = await updateTask(data, currentTask.id);
         if (result?.success) {
           console.log("Updated Task", result.data);
-          fetchTasks(dispatch);
-          dispatch(closeForm());
-
-          // dispatch(updateTaskState(result.data));
         }
       } else {
         result = await createTask(data);
         if (result?.success) {
-          fetchTasks(dispatch);
-          dispatch(closeForm());
           console.log("Created Task", result.data);
         }
       }
+      await fetchTasks(dispatch, sortBy);
+      // dispatch(closeForm());
     } catch (error) {
       console.log("Error in Creating or Updating Task", error);
     }

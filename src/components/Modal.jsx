@@ -23,7 +23,6 @@ export const Modal = () => {
     dispatch(closeModal());
   };
 
-  console.log("portal is on");
   return (
     <Portal containerId="modal-root">
       <div
