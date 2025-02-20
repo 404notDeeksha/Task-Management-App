@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { startAdding } from "../redux/slices/tasksManagementSlice";
 import { openModal } from "../redux/slices/modalSlice";
 
-export const NewTask = () => {
+export const NewTask = ({ className }) => {
   const dispatch = useDispatch();
   return (
     <button
@@ -13,7 +13,7 @@ export const NewTask = () => {
         dispatch(startAdding());
         dispatch(openModal("createTask"));
       }}
-      className="w-fit px-4 py-2 bg-green-900 text-white rounded-lg shadow hover:bg-green-700"
+      className={` rounded-lg  ${className} `}
     >
       + New Task
     </button>

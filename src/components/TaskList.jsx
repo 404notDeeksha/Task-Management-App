@@ -51,9 +51,9 @@ export const TaskList = ({ tasks }) => {
           .map((task) => (
             <li
               key={task._id}
-              className="border-b pb-4 last:border-none flex flex-row justify-between mb-4 "
+              className=" flex flex-row justify-between bg-gray-100 my-3 px-3 py-2 "
             >
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-row gap-4 m-2 ">
                 <input
                   type="checkbox"
                   name={task._id}
@@ -64,14 +64,14 @@ export const TaskList = ({ tasks }) => {
                 />
                 <div className="flex flex-col gap-2">
                   <h3
-                    className={`text-black font-[700] montserrat text ${
+                    className={`text-black block break-words whitespace-normal  font-[700] montserrat text ${
                       task.status === "Completed" ? "line-through" : ""
                     }`}
                   >
                     {task.title}
                   </h3>
                   <div
-                    className={` text-sm text-gray-600  ${
+                    className={` text-sm text-black  ${
                       task.status === "Completed" ? "line-through" : ""
                     }`}
                   >
@@ -104,7 +104,7 @@ export const TaskList = ({ tasks }) => {
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 m-2">
                 <button
                   onClick={() => {
                     dispatch(startEditing(task));

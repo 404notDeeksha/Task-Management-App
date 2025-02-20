@@ -5,6 +5,7 @@ import { logoutUser } from "./../api/auth";
 import { logout } from "../redux/slices/authSlice";
 import { routes } from "../routes/routes";
 import { resetAllTasks } from "../redux/slices/alltasksSlice";
+import { NewTask } from "./NewTask";
 
 export default function Navbar() {
   const userName = useSelector((state) => state.auth.user.name);
@@ -76,6 +77,11 @@ export default function Navbar() {
         >
           Pending
         </NavLink>
+        <NewTask
+          className={
+            "font-bold text-lg  hover:bg-white hover:text-green-900 w-full text-left py-3 rounded pl-5 "
+          }
+        />
       </div>
 
       <div className="relative flex flex-row items-center group hover:bg-white hover:text-green-900  rounded">

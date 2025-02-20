@@ -9,17 +9,13 @@ export const TaskSorter = () => {
     dispatch(setSortBy(e.target.value));
   };
 
-  // useEffect(() => {
-  //   console.log("Redux sortBy updated:", sortBy);
-  // }, [sortBy]);
-
   return (
-    <div className="flex items-center space-x-2 text-sm">
+    <div className="flex items-center gap-2 text-sm flex-wrap">
       <select
         id="sort"
         value={sortBy || ""}
         onChange={handleSortChange}
-        className="border px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        className="border px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full sm:w-auto min-w-[150px]"
       >
         <option value="">Sort</option>
         <option value="dueDateAsc">Due Date (Ascending)</option>
