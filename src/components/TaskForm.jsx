@@ -8,7 +8,6 @@ import { closeForm } from "../redux/slices/tasksManagementSlice";
 import { createTask, updateTask } from "../api/tasks";
 import { closeModal } from "../redux/slices/modalSlice";
 import { fetchTasks } from "../utils/fetchTasks";
-import { setSortBy } from "../redux/slices/alltasksSlice";
 
 export const TaskForm = () => {
   const { isAdding, isEditing, currentTask } = useSelector(
@@ -48,7 +47,6 @@ export const TaskForm = () => {
         }
       }
       await fetchTasks(dispatch, sortBy);
-      // dispatch(closeForm());
     } catch (error) {
       console.log("Error in Creating or Updating Task", error);
     }

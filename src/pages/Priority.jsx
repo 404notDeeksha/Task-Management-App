@@ -23,7 +23,6 @@ function groupByPriority(list) {
 export const Priority = () => {
   const allTasks = useSelector((state) => state.allTasks.tasks);
   const groupedTasks = groupByPriority(allTasks);
-  // console.log(groupedTasks);
   const priorityOrder = ["High", "Medium", "Low"];
 
   return (
@@ -32,13 +31,13 @@ export const Priority = () => {
         Priority
       </h1>
 
-      <div className="mt-8 flex-1 flex overflow-y-auto scrollbar-hide flex-row justify-between gap-5">
+      <div className="mt-8 flex-1 flex overflow-y-auto scrollbar-hide flex-row justify-between gap-8">
         {groupedTasks &&
           Object.keys(groupedTasks)
             .sort((a, b) => priorityOrder.indexOf(a) - priorityOrder.indexOf(b))
-            .map((priority) => {
+            .map((priority, index) => {
               return (
-                <div className="max-w-[400px] w-full">
+                <div key={index} className="max-w-[400px] w-full">
                   <h1 className="block w-fit rounded font-bold text-white text-lg bg-green-900 p-2 px-3 mb-5">
                     {priority}
                   </h1>

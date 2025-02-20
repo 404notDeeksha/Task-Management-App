@@ -21,7 +21,7 @@ export const TaskList = ({ tasks }) => {
     try {
       const result = await deleteTask(taskId);
       if (result.success) {
-        fetchTasks(dispatch, sortBy);
+        await fetchTasks(dispatch, sortBy);
       }
     } catch (error) {
       console.log("Error", error);
@@ -36,7 +36,7 @@ export const TaskList = ({ tasks }) => {
     try {
       const result = await updateTask(data, id);
       if (result?.success) {
-        fetchTasks(dispatch, sortBy);
+        await fetchTasks(dispatch, sortBy);
       }
     } catch (err) {
       console.log("Error updating Task status", err);
@@ -53,13 +53,13 @@ export const TaskList = ({ tasks }) => {
           .map((task) => (
             <li
               key={task._id}
-              className=" flex flex-row justify-between bg-gray-100 my-3 px-3 py-2 "
+              className=" flex flex-row justify-between bg-gray-100 shadow my-3 px-3 py-2 "
             >
               <div className="flex flex-row gap-4 m-2 ">
                 <input
                   type="checkbox"
                   name={task._id}
-                  className="appearance-none w-4 h-4 rounded-[50%] cursor-pointer border-2 
+                  className="appearance-none min-w-4 max-h-4 rounded-[50%] cursor-pointer border-2 
                    checked:bg-green-800 mt-1"
                   checked={task.status === "Completed"}
                   onChange={() => handleCheckbox(task, task._id)}
@@ -73,7 +73,7 @@ export const TaskList = ({ tasks }) => {
                     {task.title}
                   </h3>
                   <div
-                    className={` text-sm text-black  ${
+                    className={` text-[16px] text-black  ${
                       task.status === "Completed" ? "line-through" : ""
                     }`}
                   >

@@ -12,17 +12,14 @@ const allTasksSlice = createSlice({
       state.tasks = sortTasks([...action.payload], state.sortBy);
     },
     setSortBy: (state, action) => {
-      console.log("CHECK TASK SORT STATUS", state.sortBy);
       state.sortBy = action.payload;
       state.tasks = sortTasks([...state.tasks], action.payload);
-      console.log("CHECK TASK ACTION ASKED", action.payload);
-      console.log("CHECK SORTED TASKS", state.tasks);
     },
     resetAllTasks: () => initialState,
   },
 });
 
-const sortTasks = (tasks, sortBy) => {
+export const sortTasks = (tasks, sortBy) => {
   if (!sortBy) return [...tasks];
 
   //a-a b-b

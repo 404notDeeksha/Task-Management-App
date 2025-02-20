@@ -3,6 +3,7 @@ import { isPreviousDate } from "../utils/common-utils";
 import { useSelector } from "react-redux";
 import { TaskList } from "../components/TaskList";
 import { currentDate } from "./../utils/common-utils";
+import { sortTasks } from "../redux/slices/alltasksSlice";
 
 export const Pending = () => {
   let tasks = useSelector((state) => state?.allTasks?.tasks);
@@ -10,6 +11,8 @@ export const Pending = () => {
   tasks = tasks.filter((task) => {
     return isPreviousDate(task.dueDate, currentDate);
   });
+
+  tasks = sortTasks(tasks, "progress-asc");
 
   return (
     <div className="flex flex-col h-screen pb-20">

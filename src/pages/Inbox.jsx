@@ -2,7 +2,6 @@ import React from "react";
 import { TaskList } from "../components/TaskList";
 import { useSelector } from "react-redux";
 import { TaskSorter } from "../components/TaskSorter";
-import { NewTask } from "../components/NewTask";
 
 export const Inbox = () => {
   const allTasks = useSelector((state) => state.allTasks.tasks);
