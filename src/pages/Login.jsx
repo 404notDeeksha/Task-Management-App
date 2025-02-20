@@ -11,14 +11,13 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.inbox); // Redirect to Home if already logged in
+      navigate(routes.inbox);
     }
   }, [isAuthenticated, navigate]);
 
@@ -58,6 +57,7 @@ export const Login = () => {
             <input
               type="email"
               id="email"
+              autoComplete="username"
               className="w-full p-2 border border-gray-300 rounded-md"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -74,6 +74,7 @@ export const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
+                autoComplete="current-password"
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -91,22 +92,8 @@ export const Login = () => {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-              className="h-4 w-4 text-blue-500 border-gray-400 rounded"
-            />
-            <label htmlFor="rememberMe" className="ml-2 text-gray-600 text-sm">
-              Remember Me
-            </label>
-          </div>
-
           <button
             type="submit"
-            disabled={!rememberMe}
             className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
           >
             Login

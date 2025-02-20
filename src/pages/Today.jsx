@@ -31,7 +31,6 @@ export const Today = () => {
         <div className="">|</div>
         <div className="font-bold">{getCurrentDay()}</div>
       </div>
-      <NewTask />
       <div className="my-4 flex-1 overflow-y-auto scrollbar-hide">
         <TaskList tasks={tasks} />
       </div>
