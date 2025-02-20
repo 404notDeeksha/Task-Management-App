@@ -11,12 +11,7 @@ export const Inbox = () => {
       <h1 className="block w-fit rounded font-bold text-white text-3xl bg-green-900 p-2 px-16 ">
         Inbox
       </h1>
-      <div className="mt-7 px-2 flex justify-between gap-2">
-        <NewTask
-          className={
-            "bg-green-900 text-white  hover:bg-green-700 shadow w-fit  px-4 py-2"
-          }
-        />
+      <div className="mt-7 px-2 flex justify-end">
         <TaskSorter />
       </div>
       <div className="mt-8 flex-1 overflow-y-auto scrollbar-hide  ">
