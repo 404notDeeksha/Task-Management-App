@@ -57,6 +57,7 @@ export const Login = () => {
             <input
               type="email"
               id="email"
+              name="email"
               autoComplete="username"
               className="w-full p-2 border border-gray-300 rounded-md"
               value={email}
@@ -74,6 +75,7 @@ export const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
+                name="password"
                 autoComplete="current-password"
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={password}
