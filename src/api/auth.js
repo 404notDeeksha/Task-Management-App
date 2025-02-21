@@ -22,7 +22,7 @@ export const loginUser = async (userData) => {
       withCredentials: true,
     });
     if (response.data?.user?.token) {
-      console.log("Trying to set cookie");
+      console.log("Trying to set cookie", `token=${response.data.user.token}`);
       document.cookie = `token=${response.data.user.token}`;
     }
     console.log("Login Res", response.data);
