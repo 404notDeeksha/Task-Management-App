@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../api/auth";
 import { FiEye } from "react-icons/fi";
@@ -72,7 +72,7 @@ export const Signup = () => {
           console.log("Account created");
         }
       } catch (error) {
-        console.log("Account is not created");
+        console.log("Account is not created", error);
       }
     }
   };

@@ -1,7 +1,7 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { startAdding } from "../redux/slices/tasksManagementSlice";
 import { openModal } from "../redux/slices/modalSlice";
+import PropTypes from "prop-types";
 
 export const NewTask = ({ className }) => {
   const dispatch = useDispatch();
@@ -18,4 +18,8 @@ export const NewTask = ({ className }) => {
       + New Task
     </button>
   );
+};
+
+NewTask.propTypes = {
+  className: PropTypes.string,
 };

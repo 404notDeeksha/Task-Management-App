@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
@@ -10,13 +10,15 @@ export const Dashboard = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (user) {
+      fetchTasks(dispatch, sortBy);
+    }
+  }, [user, dispatch, sortBy]); // Added `user` to dependencies
+
   if (!user) {
     return <div>Loading...</div>;
   }
-
-  useEffect(() => {
-    fetchTasks(dispatch, sortBy);
-  }, []);
 
   return (
     <div className="flex flex-row w-full h-screen overflow-hidden">

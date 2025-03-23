@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { MdDeleteOutline } from "react-icons/md";
@@ -8,11 +7,10 @@ import { startEditing } from "../redux/slices/tasksManagementSlice";
 import { openModal } from "../redux/slices/modalSlice";
 import { currentDate, formatDate, isPreviousDate } from "../utils/common-utils";
 import { fetchTasks } from "../utils/fetchTasks";
+import PropTypes from "prop-types";
 
 export const TaskList = ({ tasks }) => {
-  const { isAdding, isEditing, currentTask } = useSelector(
-    (state) => state.taskManagement
-  );
+  const { currentTask } = useSelector((state) => state.taskManagement);
   const sortBy = useSelector((state) => state.allTasks.sortBy);
 
   const dispatch = useDispatch();
@@ -128,4 +126,17 @@ export const TaskList = ({ tasks }) => {
       )}
     </ul>
   );
+};
+
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      status: PropTypes.oneOf(["To Do", "In Progress", "Completed"]).isRequired,
+      priority: PropTypes.oneOf(["High", "Medium", "Low"]).isRequired,
+      dueDate: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

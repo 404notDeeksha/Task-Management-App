@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -34,7 +34,7 @@ export const Login = () => {
       });
       if (result.success) {
         // setTimeout();
-        localStorage.setItem("token", result.user.token);
+        // localStorage.setItem("token", result.user.token);
         navigate(routes.login);
         dispatch(loginSuccess({ user: result.user }));
         console.log("Account found");
@@ -105,7 +105,7 @@ export const Login = () => {
         </form>
 
         <div className="mt-4 text-sm flex flex-row gap-2 items-center justify-center">
-          <p className=" text-gray-600">Don't have an account? </p>
+          <p className=" text-gray-600">Don&apos;t have an account? </p>
           <Link to={routes.signup} className="underline">
             Sign up
           </Link>

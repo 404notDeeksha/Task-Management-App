@@ -25,23 +25,28 @@ export const sortTasks = (tasks, sortBy) => {
   //a-a b-b
   return [...tasks].sort((a, b) => {
     switch (sortBy) {
-      case "dueDateAsc":
+      case "dueDateAsc": {
         return new Date(a.dueDate) - new Date(b.dueDate);
-      case "createdAtDesc":
+      }
+      case "createdAtDesc": {
         return new Date(b.createdAt) - new Date(a.createdAt);
-      case "priority":
+      }
+      case "priority": {
         const priorityOrder = { High: 1, Medium: 2, Low: 3 };
         return priorityOrder[a.priority] - priorityOrder[b.priority];
-      case "progress-asc":
+      }
+      case "progress-asc": {
         const ascProgressOrder = { "To Do": 1, "In Progress": 2, Completed: 3 };
         return ascProgressOrder[a.status] - ascProgressOrder[b.status];
-      case "progress-desc":
+      }
+      case "progress-desc": {
         const descProgressOrder = {
           "To Do": 1,
           "In Progress": 2,
           Completed: 3,
         };
         return descProgressOrder[b.status] - descProgressOrder[a.status];
+      }
       default:
         return 0;
     }

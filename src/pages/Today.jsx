@@ -1,8 +1,7 @@
-import React from "react";
 import { getCurrentDate, getCurrentDay } from "../utils/common-utils";
 import { useSelector } from "react-redux";
 import { TaskList } from "../components/TaskList";
-import { NewTask } from "../components/NewTask";
+// import { NewTask } from "../components/NewTask";
 
 export const Today = () => {
   let tasks = useSelector((state) => state?.allTasks?.tasks);

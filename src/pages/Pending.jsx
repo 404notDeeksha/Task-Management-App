@@ -1,4 +1,3 @@
-import React from "react";
 import { isPreviousDate } from "../utils/common-utils";
 import { useSelector } from "react-redux";
 import { TaskList } from "../components/TaskList";
