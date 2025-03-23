@@ -33,12 +33,14 @@ export const Login = () => {
         password: password,
       });
       if (result.success) {
+        // setTimeout();
+        localStorage.setItem("token", result.user.token);
         navigate(routes.login);
         dispatch(loginSuccess({ user: result.user }));
         console.log("Account found");
       }
     } catch (error) {
-      console.log("Account not found");
+      console.log("Account not found", error);
     }
   };
 

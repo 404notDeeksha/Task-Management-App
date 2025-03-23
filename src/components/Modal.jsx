@@ -22,11 +22,11 @@ export const Modal = () => {
     dispatch(closeForm());
     dispatch(closeModal());
   };
-
+  console.log("modal", currentContent.component);
   return (
     <Portal containerId="modal-root">
       <div
-        className={`fixed top-0 left-0 h-full w-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center `}
+        className={`fixed top-0 left-0 h-full w-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center`}
         onClick={() => clickOverlay()}
       >
         <div className="" onClick={(e) => e.stopPropagation()}>

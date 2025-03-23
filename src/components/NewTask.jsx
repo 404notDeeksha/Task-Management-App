@@ -9,7 +9,7 @@ export const NewTask = ({ className }) => {
     <button
       type="button"
       onClick={() => {
-        console.log("Click");
+        console.log("Clicking New Task Button");
         dispatch(startAdding());
         dispatch(openModal("createTask"));
       }}

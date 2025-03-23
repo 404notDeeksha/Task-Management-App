@@ -21,11 +21,7 @@ export const loginUser = async (userData) => {
     const response = await axios.post(`${URL.LOGIN_URL}`, userData, {
       withCredentials: true,
     });
-    if (response.data?.user?.token) {
-      console.log("Trying to set cookie", `token=${response.data.user.token}`);
-      document.cookie = `token=${response.data.user.token}`;
-    }
-    console.log("Login Res", response.data);
+    console.log("Login Response", response.data);
     return response.data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
