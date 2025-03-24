@@ -14,7 +14,7 @@ export const Dashboard = () => {
     if (user) {
       fetchTasks(dispatch, sortBy);
     }
-  }, [user, dispatch, sortBy]);
+  }, [user, dispatch, sortBy]); // Added `user` to dependencies
 
   if (!user) {
     return <div>Loading...</div>;
