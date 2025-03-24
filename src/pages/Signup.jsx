@@ -91,7 +91,6 @@ export const Signup = () => {
 
         if (result.success) {
           console.log("Account created");
-          localStorage.setItem("token", result.user.token);
           navigate(routes.login);
           dispatch(loginSuccess({ user: result.user }));
         }
