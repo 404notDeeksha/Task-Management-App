@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -14,6 +14,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -21,9 +22,27 @@ export const Login = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (e) => {
+    e.stopPropagation();
     setShowPassword(!showPassword);
   };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target) &&
+        event.target.tagName !== "BUTTON"
+      ) {
+        setShowPassword(false);
+      }
+    }
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +53,7 @@ export const Login = () => {
       });
       if (result.success) {
         // setTimeout();
-        // localStorage.setItem("token", result.user.token);
+        localStorage.setItem("token", result.user.token);
         navigate(routes.login);
         dispatch(loginSuccess({ user: result.user }));
         console.log("Account found");
@@ -73,7 +92,8 @@ export const Login = () => {
             <label htmlFor="password" className="block text-gray-600">
               Password
             </label>
-            <div className="relative">
+
+            <div className="relative" ref={wrapperRef}>
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"

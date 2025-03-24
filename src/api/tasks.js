@@ -44,7 +44,6 @@ export const deleteTask = async (id) => {
 
 //AllTasks
 export const getTasks = async () => {
-  console.log("Getting All Tasks");
   try {
     const response = await api.get("");
     return response?.data;

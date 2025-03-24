@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../api/auth";
 import { FiEye } from "react-icons/fi";
 import { FaRegEyeSlash } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { routes } from "../routes/routes";
+import { loginSuccess } from "../redux/slices/authSlice";
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,8 @@ export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -37,9 +40,27 @@ export const Signup = () => {
     return "Strong";
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const togglePasswordVisibility = (e) => {
+    e.stopPropagation();
+    setShowPassword((prev) => !prev);
   };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target) &&
+        event.target.tagName !== "BUTTON"
+      ) {
+        setShowPassword(false); // Hide password if clicked outside
+      }
+    }
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -68,8 +89,11 @@ export const Signup = () => {
           password: formData.password,
         });
 
-        if (result) {
+        if (result.success) {
           console.log("Account created");
+          localStorage.setItem("token", result.user.token);
+          navigate(routes.login);
+          dispatch(loginSuccess({ user: result.user }));
         }
       } catch (error) {
         console.log("Account is not created", error);
@@ -120,7 +144,7 @@ export const Signup = () => {
           <div className="flex flex-col gap-y-2">
             <label className="block text-gray-600">Password</label>
 
-            <div className="relative">
+            <div className="relative" ref={wrapperRef}>
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
