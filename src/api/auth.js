@@ -34,7 +34,6 @@ export const loginUser = async (userData) => {
 
 export const logoutUser = async () => {
   console.log("Logging out");
-  localStorage.removeItem("token");
   try {
     await axios.post(`${URL.LOGOUT_URL}`, {}, { withCredentials: true }); // ✅ Ensures cookies are handled
   } catch (error) {
