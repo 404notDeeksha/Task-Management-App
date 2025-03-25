@@ -52,7 +52,7 @@ export const Signup = () => {
         !wrapperRef.current.contains(event.target) &&
         event.target.tagName !== "BUTTON"
       ) {
-        setShowPassword(false); // Hide password if clicked outside
+        setShowPassword(false);
       }
     }
 
