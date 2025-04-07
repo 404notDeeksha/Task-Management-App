@@ -14,7 +14,7 @@ export const TaskForm = () => {
   );
   const dispatch = useDispatch();
   const sortBy = useSelector((state) => state.allTasks.sortBy);
-  console.log("current - sortBy", sortBy);
+  // console.log("current - sortBy", sortBy);
 
   const {
     control,
@@ -40,6 +40,7 @@ export const TaskForm = () => {
           console.log("Updated Task", result.data);
         }
       } else {
+        console.log("Creating Task", data);
         result = await createTask(data);
         if (result?.success) {
           console.log("Created Task", result.data);

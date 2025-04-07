@@ -3,7 +3,7 @@ import { URL } from "../utils/url";
 
 const api = axios.create({
   baseURL: URL.TASK_URL,
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 api.interceptors.request.use(

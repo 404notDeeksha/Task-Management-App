@@ -5,10 +5,7 @@ import { persistor } from "../redux/store";
 export const signupUser = async (userData) => {
   try {
     const response = await axios.post(`${URL.SIGNUP_URL}`, userData, {
-      headers: {
-        "Content-Type": "application/json",
-        Origin: window.location.origin, // Ensure origin is sent
-      },
+      withCredentials: true,
     });
     console.log(response.data);
     return response.data;
@@ -25,10 +22,6 @@ export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${URL.LOGIN_URL}`, userData, {
       withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-        Origin: window.location.origin, // Ensure origin is sent
-      },
     });
     console.log("Login Response", response.data);
     return response.data;
