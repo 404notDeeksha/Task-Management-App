@@ -1,7 +1,6 @@
 import api from "./axiosInstance";
 
 export const createTask = async (data) => {
-  console.log("Creating");
   try {
     const response = await api.post("", data);
     return response?.data;
@@ -15,7 +14,6 @@ export const createTask = async (data) => {
 };
 
 export const updateTask = async (data, id) => {
-  console.log(data);
   try {
     const response = await api.put(`/${id}`, data);
     return response.data;
@@ -29,7 +27,6 @@ export const updateTask = async (data, id) => {
 };
 
 export const deleteTask = async (id) => {
-  console.log("Deleting");
   try {
     const response = await api.delete(`/${id}`);
     return response.data;
