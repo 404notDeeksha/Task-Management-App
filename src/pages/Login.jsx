@@ -69,6 +69,8 @@ export const Login = () => {
           Login
         </h2>
 
+        <h3 className="my-5">Guest Login: guest@user.com / Guest@123</h3>
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-y-2 ">
             <label htmlFor="email" className="block text-gray-600">
