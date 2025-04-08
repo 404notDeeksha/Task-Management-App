@@ -37,14 +37,8 @@ export const logoutUser = async () => {
   try {
     await axios.post(
       `${URL.LOGOUT_URL}`
-      // {},
-      // {
-      //   withCredentials: true,
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // }
-    ); // ✅ Ensures cookies are handled
+     
+    ); 
   } catch (error) {
     console.error("Logout failed:", error.response?.data?.message);
   }
