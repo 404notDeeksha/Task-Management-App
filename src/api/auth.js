@@ -33,10 +33,18 @@ export const loginUser = async (userData) => {
 };
 
 export const logoutUser = async () => {
-  console.log("Logging out");
   localStorage.removeItem("token");
   try {
-    await axios.post(`${URL.LOGOUT_URL}`);
+    await axios.post(
+      `${URL.LOGOUT_URL}`
+      // {},
+      // {
+      //   withCredentials: true,
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // }
+    ); // ✅ Ensures cookies are handled
   } catch (error) {
     console.error("Logout failed:", error.response?.data?.message);
   }
