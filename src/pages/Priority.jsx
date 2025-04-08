@@ -3,17 +3,10 @@ import { useSelector } from "react-redux";
 
 function groupByPriority(list) {
   return list.reduce((acc, item) => {
-    // console.log("ACC,ITEM", acc, item);
-
     if (!acc[item.priority]) {
-      // console.log("!ACC[ITEM.PRIORITY]", acc[item.priority]);
-
       acc[item.priority] = [];
-      // console.log("ACC[ITEM.PRIORITY]", acc[item.priority]);
     }
     acc[item.priority].push(item);
-    // console.log("FINAL", acc[item.priority]);
-    // console.log("ACC", acc);
 
     return acc;
   }, {});

@@ -14,7 +14,6 @@ export const TaskForm = () => {
   );
   const dispatch = useDispatch();
   const sortBy = useSelector((state) => state.allTasks.sortBy);
-  // console.log("current - sortBy", sortBy);
 
   const {
     control,

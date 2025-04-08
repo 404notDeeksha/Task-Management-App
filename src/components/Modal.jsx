@@ -22,7 +22,6 @@ export const Modal = () => {
     dispatch(closeForm());
     dispatch(closeModal());
   };
-  console.log("modal", currentContent.component);
   return (
     <Portal containerId="modal-root">
       <div
