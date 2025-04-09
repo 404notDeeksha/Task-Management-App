@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { image } from "../assets";
 import { Link, NavLink } from "react-router-dom";
-import { logoutUser } from "./../api/auth";
+import { logoutUser } from "../api/auth";
 import { logout } from "../redux/slices/authSlice";
 import { routes } from "../routes/routes";
 import { resetAllTasks } from "../redux/slices/alltasksSlice";

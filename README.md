@@ -1,8 +1,61 @@
-# React + Vite
+# 📝 Todo App Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Todo App** — a sleek and responsive task management interface built using **React + Vite**, styled with **TailwindCSS**, and powered by a secure **JWT-authenticated Node.js/Express backend**.
 
-Currently, two official plugins are available:
+Deployed and ready to help you conquer your daily goals.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br />
+
+## 🔗 Live Demo
+
+Frontend: [https://todo-app-frontend.vercel.app](https://todo-app-frontend.vercel.app)  
+Backend: [https://task-management-backend-techwithdeekksha.vercel.app](https://task-management-backend-techwithdeekksha.vercel.app)
+
+<br />
+
+## 🚀 Tech Stack
+
+- ⚛️ React + Vite
+- 🎨 TailwindCSS
+- 🛠️ Redux Toolkit
+- 🔐 JWT Authentication
+- 🧠 Node.js + Express (Backend)
+- 🌐 Vercel (Deployment)
+
+<br />
+
+## ✨ Features
+
+- 🔐 **User Authentication** (Signup / Login with JWT)
+- ✅ **Add, Edit, Delete Tasks**
+- 📆 **Sort Tasks by Date, Priority, and Progress**
+- 📂 **Task Views**: Inbox, Today, Pending, Priority
+- 🎯 Fully responsive and mobile-friendly UI
+- 🔄 Seamless frontend-backend integration
+
+<br />
+
+## 📸 Screenshots
+
+| Login                           | Signup                            |
+| ------------------------------- | --------------------------------- |
+| ![Login](screenshots/login.png) | ![Signup](screenshots/signup.png) |
+
+| Inbox                           | New Task                                   |
+| ------------------------------- | ------------------------------------------ |
+| ![Inbox](screenshots/inbox.png) | ![New Task](screenshots/newtaskportal.png) |
+
+| Priority                              | Today                           | Pending                             |
+| ------------------------------------- | ------------------------------- | ----------------------------------- |
+| ![Priority](screenshots/priority.png) | ![Today](screenshots/today.png) | ![Pending](screenshots/pending.png) |
+
+<br />
+
+## 🧪 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Deek1995/todo-app-frontend.git
+cd todo-app-frontend
+```
