@@ -45,9 +45,9 @@ Backend: [https://task-management-backend-techwithdeekksha.vercel.app](https://t
 | ------------------------------- | ------------------------------------------ |
 | ![Inbox](screenshots/inbox.png) | ![New Task](screenshots/newtaskportal.png) |
 
-| Priority                              | Today                           | Pending                             |
-| ------------------------------------- | ------------------------------- | ----------------------------------- |
-| ![Priority](screenshots/priority.png) | ![Today](screenshots/today.png) | ![Pending](screenshots/pending.png) |
+| Priority                              | Today                           | Pending |
+| ------------------------------------- | ------------------------------- | ------- |
+| ![Priority](screenshots/priority.png) | ![Today](screenshots/today.png) |
 
 <br />
 
