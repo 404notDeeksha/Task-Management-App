@@ -8,7 +8,7 @@ Deployed and ready to help you conquer your daily goals.
 
 ## 🔗 Live Demo
 
-Frontend: [https://task-management-frontend-techwithdeekksha.vercel.app](https://todo-app-frontend.vercel.app)  
+Frontend: [https://task-management-frontend-techwithdeekksha.vercel.app](https://task-management-frontend-techwithdeekksha.vercel.app)  
 Backend: [https://task-management-backend-techwithdeekksha.vercel.app](https://task-management-backend-techwithdeekksha.vercel.app)
 
 <br />
