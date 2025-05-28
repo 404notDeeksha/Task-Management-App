@@ -6,6 +6,8 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { routes } from "../routes/routes";
 import { loginSuccess } from "../redux/slices/authSlice";
+import { LoaderData } from "../utils/common-components";
+import { loading } from "../redux/slices/loadingSlice";
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +21,7 @@ export const Signup = () => {
   const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isLoading = useSelector((state) => state.loading.loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const wrapperRef = useRef(null);
@@ -70,6 +73,7 @@ export const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(loading(true));
     let newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!validateEmail(formData.email))
@@ -80,6 +84,10 @@ export const Signup = () => {
     if (!formData.agree) newErrors.agree = "You must agree to the terms";
 
     setErrors(newErrors);
+    if (Object.keys(newErrors).length) {
+      dispatch(loading(false));
+      return;
+    }
 
     if (!Object.keys(newErrors).length) {
       try {
@@ -90,12 +98,14 @@ export const Signup = () => {
         });
 
         if (result.success) {
+          dispatch(loading(false));
           console.log("Account created");
           localStorage.setItem("token", result.user.token);
           navigate(routes.login);
           dispatch(loginSuccess({ user: result.user }));
         }
       } catch (error) {
+        dispatch(loading(false));
         console.log("Account is not created", error);
       }
     }
@@ -231,6 +241,7 @@ export const Signup = () => {
           </p>
         </div>
       </div>
+      <LoaderData isLoading={isLoading} />
     </div>
   );
 };
