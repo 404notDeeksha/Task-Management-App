@@ -6,6 +6,8 @@ import { loginUser } from "../api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "../redux/slices/authSlice";
 import { routes } from "../routes/routes";
+import { loading } from "../redux/slices/loadingSlice";
+import { LoaderData } from "../utils/common-components";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +16,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isLoading = useSelector((state) => state.loading.loading);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -46,18 +49,21 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(loading(true));
     try {
       const result = await loginUser({
         email: email,
         password: password,
       });
       if (result.success) {
+        dispatch(loading(false));
         localStorage.setItem("token", result.user.token);
         navigate(routes.login);
         dispatch(loginSuccess({ user: result.user }));
         console.log("Account found");
       }
     } catch (error) {
+      dispatch(loading(false));
       console.log("Account not found", error);
     }
   };
@@ -132,6 +138,7 @@ export const Login = () => {
           </Link>
         </div>
       </div>
+      <LoaderData isLoading={isLoading} />
     </div>
   );
 };
