@@ -1,6 +1,6 @@
 # 📝 Todo App Frontend
 
-Welcome to the **Todo App** — a sleek and responsive task management interface built using **React + Vite**, styled with **TailwindCSS**, and powered by a secure **JWT-authenticated Node.js/Express backend**.
+Welcome to the **Todo App** — a sleek and responsive task management interface built using **React + Vite**, styled with **TailwindCSS**, and powered by a secure **authenticated Node.js/Express backend**.
 
 Deployed and ready to help you conquer your daily goals.
 
@@ -11,6 +11,9 @@ Deployed and ready to help you conquer your daily goals.
 Frontend: [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-techwithdeekksha.vercel.app)  
 Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
 
+## 🎬 Quick Demo
+![Demo](demo.gif)
+
 <br />
 
 ## 🚀 Tech Stack
@@ -18,7 +21,6 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 - ⚛️ React + Vite
 - 🎨 TailwindCSS
 - 🛠️ Redux Toolkit
-- 🔐 JWT Authentication
 - 🧠 Node.js + Express (Backend)
 - 🌐 Vercel (Deployment)
 
@@ -26,11 +28,11 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 
 ## ✨ Features
 
-- 🔐 **User Authentication** (Signup / Login with JWT)
+- 🔐 **User Authentication** (Signup / Login)
 - ✅ **Add, Edit, Delete Tasks**
 - 📆 **Sort Tasks by Date, Priority, and Progress**
 - 📂 **Task Views**: Inbox, Today, Pending, Priority
-- 🎯 Fully responsive and mobile-friendly UI
+- 🎯 Fully responsive UI
 - 🔄 Seamless frontend-backend integration
 
 <br />
@@ -53,9 +55,37 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 
 ## 🧪 Installation
 
-Clone the repository:
-
 ```bash
-git clone https://github.com/Deek1995/todo-app-frontend.git
-cd todo-app-frontend
+# 1. Clone the repository:
+git clone https://github.com/404notDeeksha/todo-app
+cd todo-app
+
+# 2. Install dependencies:
+npm install
+
+# 3. Set up environment variables:
+Create `.env` file
+Add your backend API URL
+
+# 4. Start development server:
+npm run dev
 ```
+> ⚠️ Make sure your backend server is running before starting the frontend.
+
+## 🎓 What I Built & Learned
+
+- State management with Redux Toolkit
+- JWT-based authentication.
+- RESTful API integration
+- Responsive design principles
+- Full-stack deployment on Vercel
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE.md) file for details.
+
+## 👋 Connect With Me
+
+- Email: deeksha14.developer@gmail.com
+- GitHub: [@404notDeeksha](https://github.com/404notDeeksha)
+- LinkedIn: [My LinkedIn Profile](https://www.linkedin.com/in/deek1995)

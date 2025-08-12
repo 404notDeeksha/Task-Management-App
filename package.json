@@ -1,5 +1,5 @@
 {
-  "name": "task-management-app",
+  "name": "todo-app",
   "sideEffects": false,
   "private": true,
   "version": "0.0.0",
