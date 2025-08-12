@@ -1,6 +1,6 @@
-# 📝 Todo App Frontend
+# 📝 Task Management App
 
-Welcome to the **Todo App** — a sleek and responsive task management interface built using **React + Vite**, styled with **TailwindCSS**, and powered by a secure **authenticated Node.js/Express backend**.
+Welcome to the **Task Management App** — a sleek and responsive task management interface built using **React + Vite**, styled with **TailwindCSS**, and powered by a secure **authenticated Node.js/Express backend**.
 
 Deployed and ready to help you conquer your daily goals.
 
