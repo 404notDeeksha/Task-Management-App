@@ -1,4 +1,6 @@
 # 📝 Task Management App
+[![MIT License](https://img.shields.io/github/license/404notDeeksha/Task-Management-App?style=flat-square)](https://github.com/404notDeeksha/Task-Management-App/blob/main/LICENSE)
+
 
 Welcome to the **Task Management App** — a sleek and responsive task management interface built using **React + Vite**, styled with **TailwindCSS**, and powered by a secure **authenticated Node.js/Express backend**.
 
