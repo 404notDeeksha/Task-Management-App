@@ -6,12 +6,19 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./redux/store";
+import { LoaderData } from "./utils/common-components.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      {/* put spinner in  loading */}
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate
+        loading={
+          <>
+            <LoaderData isLoading={true} />
+          </>
+        }
+        persistor={persistor}
+      >
         <App />
       </PersistGate>
     </Provider>
