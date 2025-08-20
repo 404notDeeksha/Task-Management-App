@@ -19,17 +19,14 @@ export const Login = () => {
   const isLoading = useSelector((state) => state.loading.loading);
   const wrapperRef = useRef(null);
 
+  /* Navigating Authenticated User to inbox tab */
   useEffect(() => {
     if (isAuthenticated) {
       navigate(routes.inbox);
     }
   }, [isAuthenticated, navigate]);
 
-  const togglePasswordVisibility = (e) => {
-    e.stopPropagation();
-    setShowPassword(!showPassword);
-  };
-
+  /* Hiding password if user clicked outside password input box */
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -40,15 +37,23 @@ export const Login = () => {
         setShowPassword(false);
       }
     }
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
+  /* Toggling Password Visibility */
+  const togglePasswordVisibility = (e) => {
+    e.stopPropagation();
+    setShowPassword(!showPassword);
+  };
+
+  /* Submitting User response */
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    /* Loading Spinner untill server response is recieved */
     dispatch(loading(true));
     try {
       const result = await loginUser({
@@ -56,11 +61,11 @@ export const Login = () => {
         password: password,
       });
       if (result.success) {
-        dispatch(loading(false));
-        localStorage.setItem("token", result.user.token);
-        navigate(routes.login);
+        /* This hydrates redux with user info  */
         dispatch(loginSuccess({ user: result.user }));
-        console.log("Account found");
+        dispatch(loading(false));
+        /* Storing user's JWT token in local Storage */
+        localStorage.setItem("token", result.user.token);
       }
     } catch (error) {
       dispatch(loading(false));
