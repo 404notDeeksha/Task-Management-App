@@ -41,7 +41,7 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 
 ## 📸 Screenshots
 
-| Login                           | Signup                            |
+| Login Page                          | Signup Page                            |
 | ------------------------------- | --------------------------------- |
 | ![Login](screenshots/login.png) | ![Signup](screenshots/signup.png) |
 

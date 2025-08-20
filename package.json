@@ -1,8 +1,9 @@
 {
   "name": "task-management-app",
+  "description": "A task management app with user authentication, sorting, and priority filters.",
   "sideEffects": false,
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,6 +16,7 @@
     "@tailwindcss/vite": "^4.0.1",
     "axios": "^1.7.9",
     "node": "^18.20.6",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-datepicker": "^8.0.0",
     "react-dom": "^18.3.1",
@@ -32,6 +34,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",

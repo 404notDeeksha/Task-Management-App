@@ -24,6 +24,7 @@ export const Modal = () => {
   };
   return (
     <Portal containerId="modal-root">
+      {/* use inset-0 or bg-white/10 for translucent effect */}
       <div
         className={`fixed top-0 left-0 h-full w-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center`}
         onClick={() => clickOverlay()}

@@ -16,6 +16,7 @@ export const AppRoutes = () => {
       <Route path={routes.login} element={<Login />} />
       <Route path={routes.signup} element={<Signup />} />
       <Route element={<ProtectedRoute />}>
+      {/* Dashboard can be shared layout */}
         <Route path="/" element={<Dashboard />}>
           <Route index element={<Navigate to={routes.today} />} />
           <Route path={routes.today} element={<Today />} />

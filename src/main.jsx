@@ -10,6 +10,7 @@ import { persistor } from "./redux/store";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
+      {/* put spinner in  loading */}
       <PersistGate loading={null} persistor={persistor}>
         <App />
       </PersistGate>
