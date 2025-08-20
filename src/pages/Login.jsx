@@ -97,6 +97,7 @@ export const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
+              aria-label="email"
             />
           </div>
 
@@ -116,6 +117,7 @@ export const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
+                aria-label="password"
               />
               <button
                 type="button"
@@ -131,6 +133,7 @@ export const Login = () => {
           <button
             type="submit"
             className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
+            aria-label="login-submit"
           >
             Login
           </button>

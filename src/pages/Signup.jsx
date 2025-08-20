@@ -26,28 +26,14 @@ export const Signup = () => {
   const dispatch = useDispatch();
   const wrapperRef = useRef(null);
 
+  /* Navigating Authenticated User to inbox tab */
   useEffect(() => {
     if (isAuthenticated) {
       navigate(routes.inbox); // Redirect to Home if already logged in
     }
   }, [isAuthenticated, navigate]);
 
-  const validateEmail = (email) =>
-    /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
-
-  const validatePassword = (password) => {
-    if (password.length < 8) return "Too short";
-    if (!/(?=.*[A-Z])/.test(password)) return "Add uppercase letter";
-    if (!/(?=.*\d)/.test(password)) return "Add a number";
-    if (!/(?=.*[@$!%*?&])/.test(password)) return "Add special character";
-    return "Strong";
-  };
-
-  const togglePasswordVisibility = (e) => {
-    e.stopPropagation();
-    setShowPassword((prev) => !prev);
-  };
-
+  /* Hiding password if user clicked outside password input box */
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -58,13 +44,32 @@ export const Signup = () => {
         setShowPassword(false);
       }
     }
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
+  /* Regex to Validate Email Format*/
+  const validateEmail = (email) =>
+    /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+
+  /* Regex to Quantify Password Strength*/
+  const validatePassword = (password) => {
+    if (password.length < 8) return "Too short";
+    if (!/(?=.*[A-Z])/.test(password)) return "Add uppercase letter";
+    if (!/(?=.*\d)/.test(password)) return "Add a number";
+    if (!/(?=.*[@$!%*?&])/.test(password)) return "Add special character";
+    return "Strong";
+  };
+
+  /* Toggling Password Visibility */
+  const togglePasswordVisibility = (e) => {
+    e.stopPropagation();
+    setShowPassword((prev) => !prev);
+  };
+
+  /* Updating User Response in formData */
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
@@ -83,12 +88,16 @@ export const Signup = () => {
       newErrors.confirmPassword = "Passwords do not match";
     if (!formData.agree) newErrors.agree = "You must agree to the terms";
 
+    /* Update errors if user data doesn't match specific criterias */
     setErrors(newErrors);
+
+    /* Stop Spinner If Errors exist */
     if (Object.keys(newErrors).length) {
       dispatch(loading(false));
       return;
     }
 
+    /* If No error exists, submitting user response */
     if (!Object.keys(newErrors).length) {
       try {
         const result = await signupUser({
@@ -98,11 +107,11 @@ export const Signup = () => {
         });
 
         if (result.success) {
-          dispatch(loading(false));
-          console.log("Account created");
-          localStorage.setItem("token", result.user.token);
-          navigate(routes.login);
+          /* This hydrates redux with user info  */
           dispatch(loginSuccess({ user: result.user }));
+          dispatch(loading(false));
+          /* Storing user's JWT token in local Storage */
+          localStorage.setItem("token", result.user.token);
         }
       } catch (error) {
         dispatch(loading(false));
@@ -145,6 +154,7 @@ export const Signup = () => {
               placeholder="Enter your email"
               className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
               required
+              aria-label="email"
             />
             {errors.email && (
               <p className="text-red-500 text-sm">{errors.email}</p>
@@ -163,6 +173,7 @@ export const Signup = () => {
                 placeholder="Enter your password"
                 className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
                 required
+                aria-label="password"
               />
               <button
                 type="button"
@@ -200,6 +211,7 @@ export const Signup = () => {
               placeholder="Enter confirm password"
               className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
               required
+              aria-label="confirm-password"
             />
             {errors.confirmPassword && (
               <p className="text-red-500 text-sm">{errors.confirmPassword}</p>
@@ -214,6 +226,7 @@ export const Signup = () => {
               onChange={handleChange}
               className="h-4 w-4 text-blue-500 border-gray-400 rounded"
               required
+              aria-label="checkbox"
             />
             <label htmlFor="agreeTerms" className="ml-2 text-gray-600  text-sm">
               I agree to the{" "}
@@ -227,6 +240,7 @@ export const Signup = () => {
           <button
             type="submit"
             className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
+            aria-label="signup-submit"
           >
             Sign Up
           </button>
