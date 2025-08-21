@@ -5,6 +5,7 @@ export const TaskSorter = () => {
   const dispatch = useDispatch();
   const sortBy = useSelector((state) => state.allTasks.sortBy) || "";
 
+  /* Updating redux as per User's sort pattern selection */
   const handleSortChange = (e) => {
     dispatch(setSortBy(e.target.value));
   };

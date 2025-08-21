@@ -1,9 +1,11 @@
+
 export const getCurrentDate = () => {
   return new Date().toLocaleDateString("en-GB", {
     month: "long",
     day: "numeric",
   });
 };
+
 export const getCurrentDay = () => {
   return new Date().toLocaleDateString("en-GB", { weekday: "long" });
 };

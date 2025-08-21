@@ -15,6 +15,7 @@ export const TaskList = ({ tasks }) => {
 
   const dispatch = useDispatch();
 
+  /* Deletes Task at server & update redux */
   const handleDeleteTask = async (taskId) => {
     try {
       const result = await deleteTask(taskId);
@@ -26,13 +27,14 @@ export const TaskList = ({ tasks }) => {
     }
   };
 
-  const handleCheckbox = async (task, id) => {
+  /* Update Task status as per user actions on server & redux */
+  const handleCheckbox = async (task, taskId) => {
     const data = {
       ...task,
       status: task.status === "Completed" ? "To Do" : "Completed",
     };
     try {
-      const result = await updateTask(data, id);
+      const result = await updateTask(data, taskId);
       if (result?.success) {
         await fetchTasks(dispatch, sortBy);
       }

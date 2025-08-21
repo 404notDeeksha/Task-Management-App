@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "../pages/Login";
 import { Signup } from "../pages/Signup";
-import { NotFound } from "../pages/NotFound";
+import { NotFoundPage } from "../pages/NotFoundPage";
 import { SharedLayout } from "../pages/SharedLayout";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Priority } from "./../pages/Priority";
@@ -24,7 +24,7 @@ export const AppRoutes = () => {
           <Route path={routes.pending} element={<Pending />} />
         </Route>
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

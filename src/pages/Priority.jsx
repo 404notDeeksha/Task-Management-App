@@ -1,6 +1,7 @@
 import { TaskList } from "../components/TaskList";
 import { useSelector } from "react-redux";
 
+/* Helper function to group an array of task objects by their 'priority' */
 function groupByPriority(list) {
   return list.reduce((acc, item) => {
     if (!acc[item.priority]) {
