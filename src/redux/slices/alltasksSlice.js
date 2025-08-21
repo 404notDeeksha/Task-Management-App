@@ -15,6 +15,8 @@ const allTasksSlice = createSlice({
       state.sortBy = action.payload;
       state.tasks = sortTasks([...state.tasks], action.payload);
     },
+
+    /* Removes User's tasks from redux */
     resetAllTasks: () => initialState,
   },
 });

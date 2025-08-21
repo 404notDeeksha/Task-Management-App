@@ -14,11 +14,8 @@ export default function SideNavbar() {
 
   /* Handles User Logout */
   const handleLogout = () => {
-    /* Removes User's token from localStorage */
     logoutUser();
-    /* Removes User's tasks from redux */
     dispatch(resetAllTasks());
-    /* re-estabilshes User in redux to null */
     dispatch(logout());
   };
 
@@ -33,6 +30,7 @@ export default function SideNavbar() {
             src={image.logo}
             alt="Logo"
             className="w-10 h-10 cursor-pointer"
+            aria-label="to-do"
           />
           <h1 className="text-xl font-bold">To Do</h1>
         </Link>
@@ -100,6 +98,7 @@ export default function SideNavbar() {
         <button
           className="block w-full text-left px-4 py-2 text-xl font-bold cursor-pointer "
           type="button"
+          aria-label="logout"
           onClick={handleLogout}
         >
           Logout

@@ -32,6 +32,7 @@ export const loginUser = async (userData) => {
   }
 };
 
+ /* Removes User's token from localStorage */
 export const logoutUser = async () => {
   localStorage.removeItem("token");
   try {

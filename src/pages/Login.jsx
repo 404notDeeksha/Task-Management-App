@@ -61,7 +61,6 @@ export const Login = () => {
         password: password,
       });
       if (result.success) {
-        /* This hydrates redux with user info  */
         dispatch(loginSuccess({ user: result.user }));
         dispatch(loading(false));
         /* Storing user's JWT token in local Storage */
