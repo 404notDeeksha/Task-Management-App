@@ -17,8 +17,7 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 ![Demo](demo.gif)
 
 ## 📂 Related Repositories
-Backend Code: [Task-Management-App-Backend](https://github.c
-om/404notDeeksha/Task-Management-App-Backend)
+Backend Code: [Task-Management-App-Backend](https://github.com/404notDeeksha/Task-Management-App-Backend)
 
 <br />
 
