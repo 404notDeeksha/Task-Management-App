@@ -7,14 +7,18 @@ import { routes } from "../routes/routes";
 import { resetAllTasks } from "../redux/slices/alltasksSlice";
 import { NewTask } from "./NewTask";
 
-export default function Navbar() {
+export default function SideNavbar() {
   const userName = useSelector((state) => state.auth.user.name);
   const userInitial = userName ? userName.charAt(0).toUpperCase() : "U";
   const dispatch = useDispatch();
 
+  /* Handles User Logout */
   const handleLogout = () => {
+    /* Removes User's token from localStorage */
     logoutUser();
+    /* Removes User's tasks from redux */
     dispatch(resetAllTasks());
+    /* re-estabilshes User in redux to null */
     dispatch(logout());
   };
 
