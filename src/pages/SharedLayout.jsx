@@ -11,12 +11,12 @@ export const SharedLayout = () => {
 
   const dispatch = useDispatch();
 
-  /* Rehydrate redux to show User Data */
+  /* Rehydrate redux to show User Data with change in user, sort order */
   useEffect(() => {
     if (user) {
       fetchTasks(dispatch, sortBy);
     }
-  }, [user, dispatch, sortBy]); // Added `user` to dependencies
+  }, [user, dispatch, sortBy]);
 
   /* If there is no user, show Loading spinner */
   if (!user) {
