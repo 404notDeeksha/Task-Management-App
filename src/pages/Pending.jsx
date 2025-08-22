@@ -8,7 +8,9 @@ export const Pending = () => {
   let tasks = useSelector((state) => state?.allTasks?.tasks);
 
   tasks = tasks.filter((task) => {
-    return isPreviousDate(task.dueDate, currentDate);
+    return (
+      isPreviousDate(task.dueDate, currentDate) && task.status !== "Completed"
+    );
   });
 
   tasks = sortTasks(tasks, "progress-asc");
