@@ -64,8 +64,8 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 
 ```bash
 # 1. Clone the repository:
-git clone https://github.com/404notDeeksha/todo-app
-cd todo-app
+git clone https://github.com/404notDeeksha/Task-Management-App
+cd Task-Management-App
 
 # 2. Install dependencies:
 npm install
