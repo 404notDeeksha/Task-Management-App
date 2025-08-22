@@ -16,8 +16,9 @@ Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwit
 ## 🎬 Quick Demo
 ![Demo](demo.gif)
 
-## 📂 Related Repositories
-Backend Code: [Task-Management-App-Backend](https://github.com/404notDeeksha/Task-Management-App-Backend)
+## 📂 Backend Repository
+[![Task-Management-App-Backend](https://img.shields.io/badge/Task--Management--App--Backend-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/404notDeeksha/Task-Management-App-Backend)
+
 
 <br />
 
