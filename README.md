@@ -14,7 +14,7 @@ Frontend: [https://plan-live-techwithdeekksha.vercel.app](https://plan-live-tech
 Backend: [https://plan-dep-techwithdeekksha.vercel.app](https://plan-dep-techwithdeekksha.vercel.app)
 
 ## 🎬 Quick Demo
-![Demo](demo.gif)
+[![Task Manager Demo](./screenshots/demo.gif)](https://www.youtube.com/watch?v=https://youtu.be/nOcQAmmzf9o)
 
 ## 📂 Backend Repository
 [![Task-Management-App-Backend](https://img.shields.io/badge/Task--Management--App--Backend-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/404notDeeksha/Task-Management-App-Backend)
