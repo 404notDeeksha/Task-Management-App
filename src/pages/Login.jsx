@@ -73,15 +73,15 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-green-100">
-      <div className="bg-white p-8 px-10 rounded-lg shadow-lg w-[500px]">
+    <main className="flex justify-center items-center min-h-screen bg-green-100 p-4">
+      <div className="bg-white p-8 px-6 sm:px-10 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
           Login
         </h2>
 
-        <h3 className="my-5">Guest Login: guest@user.com / Guest@123</h3>
+        <h3 className="my-5 text-sm text-gray-600">Guest Login: guest@user.com / Guest@123</h3>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-y-6" aria-label="Login form">
           <div className="flex flex-col gap-y-2 ">
             <label htmlFor="email" className="block text-gray-600">
               Email
@@ -91,12 +91,12 @@ export const Login = () => {
               id="email"
               name="email"
               autoComplete="username"
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              aria-label="email"
+              aria-label="Email address"
             />
           </div>
 
@@ -111,17 +111,17 @@ export const Login = () => {
                 id="password"
                 name="password"
                 autoComplete="current-password"
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
-                aria-label="password"
+                aria-label="Password"
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FiEye />}
@@ -131,8 +131,8 @@ export const Login = () => {
 
           <button
             type="submit"
-            className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
-            aria-label="login-submit"
+            className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            aria-label="Login"
           >
             Login
           </button>
@@ -145,7 +145,8 @@ export const Login = () => {
           </Link>
         </div>
       </div>
+      
       <LoaderData isLoading={isLoading} />
-    </div>
+    </main>
   );
 };

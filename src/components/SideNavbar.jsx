@@ -6,8 +6,10 @@ import { logout } from "../redux/slices/authSlice";
 import { routes } from "../routes/routes";
 import { resetAllTasks } from "../redux/slices/alltasksSlice";
 import { NewTask } from "./NewTask";
+import { FiMenu, FiX } from "react-icons/fi";
+import PropTypes from "prop-types";
 
-export default function SideNavbar() {
+export default function SideNavbar({ isOpen, onToggle }) {
   const userName = useSelector((state) => state.auth.user.name);
   const userInitial = userName ? userName.charAt(0).toUpperCase() : "U";
   const dispatch = useDispatch();
@@ -20,10 +22,35 @@ export default function SideNavbar() {
   };
 
   return (
-    <nav
-      className="bg-green-900 text-white p-4 flex flex-col 
-    w-[300px] justify-between shadow-lg"
-    >
+    <>
+      {/* Mobile toggle button */}
+      <button
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-green-900 text-white rounded-lg shadow-lg"
+        onClick={onToggle}
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+      >
+        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+      </button>
+
+      {/* Overlay for mobile */}
+      {isOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+          onClick={onToggle}
+          aria-hidden="true"
+        />
+      )}
+
+      <nav
+        className={`bg-green-900 text-white p-4 flex flex-col 
+        md:w-[300px] justify-between shadow-lg fixed md:relative h-full z-40
+        transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
       <div className="flex flex-col items-start gap-5">
         <Link to={routes.inbox} className="flex flex-row items-center gap-3">
           <img
@@ -105,5 +132,11 @@ export default function SideNavbar() {
         </button>
       </div>
     </nav>
+    </>
   );
 }
+
+SideNavbar.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};

@@ -121,64 +121,67 @@ export const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-green-100">
-      <div className="bg-white p-8 px-10 rounded-lg shadow-lg w-[500px]">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-10">
+    <main className="flex justify-center items-center min-h-screen bg-green-100 p-4">
+      <div className="bg-white p-6 sm:p-8 px-6 sm:px-10 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-8 sm:mb-10">
           Sign Up
         </h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-y-4" aria-label="Sign up form">
           <div className="flex flex-col gap-y-2">
-            <label className="block text-gray-600">Name</label>
+            <label htmlFor="name" className="block text-gray-600">Name</label>
             <input
               type="text"
+              id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your name"
               className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
               required
-              aria-label="name"
+              aria-label="Name"
             />
             {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name}</p>
+              <p className="text-red-500 text-sm" role="alert">{errors.name}</p>
             )}
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <label className="block text-gray-600">Email</label>
+            <label htmlFor="email" className="block text-gray-600">Email</label>
             <input
               type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
               className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
               required
-              aria-label="email"
+              aria-label="Email address"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
+              <p className="text-red-500 text-sm" role="alert">{errors.email}</p>
             )}
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <label className="block text-gray-600">Password</label>
+            <label htmlFor="password" className="block text-gray-600">Password</label>
 
             <div className="relative" ref={wrapperRef}>
               <input
                 type={showPassword ? "text" : "password"}
+                id="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
                 className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
                 required
-                aria-label="password"
+                aria-label="Password"
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <FaRegEyeSlash /> : <FiEye />}
@@ -197,50 +200,52 @@ export const Signup = () => {
               </p>
             )}
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password}</p>
+              <p className="text-red-500 text-sm" role="alert">{errors.password}</p>
             )}
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <label className="block text-gray-600">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="block text-gray-600">Confirm Password</label>
             <input
               type="password"
+              id="confirmPassword"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Enter confirm password"
               className="w-full p-2 border border-gray-300 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 rounded-md transition"
               required
-              aria-label="confirm-password"
+              aria-label="Confirm password"
             />
             {errors.confirmPassword && (
-              <p className="text-red-500 text-sm">{errors.confirmPassword}</p>
+              <p className="text-red-500 text-sm" role="alert">{errors.confirmPassword}</p>
             )}
           </div>
 
           <div className="flex items-center">
             <input
               type="checkbox"
+              id="agree"
               name="agree"
               checked={formData.agree}
               onChange={handleChange}
-              className="h-4 w-4 text-blue-500 border-gray-400 rounded"
+              className="h-4 w-4 text-green-600 border-gray-400 rounded focus:ring-green-500"
               required
-              aria-label="checkbox"
+              aria-label="Agree to terms"
             />
-            <label htmlFor="agreeTerms" className="ml-2 text-gray-600  text-sm">
+            <label htmlFor="agree" className="ml-2 text-gray-600 text-sm">
               I agree to the{" "}
-              <span className="text-blue-500">Terms and Conditions</span>
+              <span className="text-green-600">Terms and Conditions</span>
             </label>
           </div>
           {errors.agree && (
-            <p className="text-red-500 text-sm">{errors.agree}</p>
+            <p className="text-red-500 text-sm" role="alert">{errors.agree}</p>
           )}
 
           <button
             type="submit"
-            className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-6 font-bold"
-            aria-label="signup-submit"
+            className="w-full p-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition mt-4 sm:mt-6 font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            aria-label="Sign up"
           >
             Sign Up
           </button>
@@ -256,6 +261,6 @@ export const Signup = () => {
         </div>
       </div>
       <LoaderData isLoading={isLoading} />
-    </div>
+    </main>
   );
 };
